@@ -33,7 +33,7 @@ class CWeatherWidget
     public static function InsertNewWidget($name)
     {
         global $DB;
-        $strSql = "INSERT INTO `" . self::DATABASE . "` (ACTIVE, NAME) VALUES ('Y', '$name')";
+        $strSql = "INSERT INTO `" . self::DATABASE . "` (ACTIVE, NAME, SUPER) VALUES (1, '$name', 0)";
 
         $res = $DB->Query($strSql, false, "FILE: " . __FILE__ . "<br> LINE: " . __LINE__);
 
@@ -52,12 +52,7 @@ class CWeatherWidget
     {
         global $DB;
 
-        $strSql = "
-			SELECT 
-				W.ACTIVE, W.NAME, W.WIDGET_ID
-			FROM
-				b_weather_widget W
-			";
+        $strSql = "SELECT * FROM b_weather_widget";
 
         $res = $DB->Query($strSql, false, "FILE: " . __FILE__ . "<br> LINE: " . __LINE__);
 
