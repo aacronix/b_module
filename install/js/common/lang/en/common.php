@@ -1,0 +1,20 @@
+<?
+$MESS['MONDAY'] = "Monday";
+$MESS['TUESDAY'] = "Tuesday";
+$MESS['WEDNESDAY'] = "Wednesday";
+$MESS['THURSDAY'] = "Thursday";
+$MESS['FRIDAY'] = "Friday";
+$MESS['SATURDAY'] = "Saturday";
+$MESS['SUNDAY'] = "Sunday";
+$MESS['JANUARY'] = "January";
+$MESS['FEBRUARY'] = "February";
+$MESS['MARCH'] = "March";
+$MESS['APRIL'] = "April";
+$MESS['MAY'] = "May";
+$MESS['JUNE'] = "June";
+$MESS['JULE'] = "Jule";
+$MESS['AUGUST'] = "August";
+$MESS['SEPTEMBER'] = "September";
+$MESS['OCTOBER'] = "October";
+$MESS['NOVEMBER'] = "November";
+$MESS['DECEMBER'] = "December";

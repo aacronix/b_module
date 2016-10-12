@@ -1,0 +1,33 @@
+<?php
+	$MESS['PROVIDERS_TAB'] = 'Providers';
+	$MESS['PROVIDERS_TAB_TITLE'] = 'Settings provider parameters';
+	$MESS['OBJECT_LOCATION_TAB'] = 'Object location';
+	$MESS['OBJECT_LOCATION_TAB_TITLE'] = 'Setting object location';
+	$MESS['WIDGET_VIEW_LOCATION_TAB'] = 'Widget display';
+	$MESS['WIDGET_VIEW_LOCATION_TAB_TITLE'] = 'Setting the display of the widget';
+	$MESS['SAVE_BUTTON'] = 'Save';
+	$MESS['APPLY_BUTTON'] = 'Apply';
+	$MESS['GROUP_TITLE'] = 'Settings module parameters';
+	$MESS['PROVIDERS_SETTINGS_GROUP_TITLE'] = 'Configuring providers';
+	$MESS['API_KEY_CAPTION'] = 'API KEY';
+	$MESS['SHOW_POINT_LOCATION'] = 'Specify the location on the map';
+	$MESS['SET_THIS_LOCATION_QUESTION'] = 'Set this location?';
+	$MESS['LATITUDE'] = 'Latitude';
+	$MESS['LONGITUDE'] = 'Longitude';
+	$MESS['ESTABLISHED_COORDINATES'] = 'Established coordinates';
+	$MESS['VIEW_SETTINGS'] = 'Setting display';
+	$MESS['WIDGET_UPDATE_INTERVAL'] = 'Widget update period';
+	$MESS['MINUTES'] = 'minutes';
+	$MESS['UPDATE_DATA'] = 'Update data';
+	$MESS['UPDATE_PREVIEW'] = 'Update preview';
+	$MESS['CANT_GET_WEATHER'] = 'Can not get data about the weather, check the entered keys for the selected provider';
+	$MESS['WIDGET_PREVIEW'] = 'Widget preview';
+	$MESS['KPH'] = 'km/h';
+	$MESS['MPH'] = 'ml/h';
+	$MESS['MTPS'] = 'm/s';
+	$MESS['WRONG_API_KEY_ERROR'] = '* This Api-key in the system does not exist, double-check it';
+	$MESS['WRONG_APP_KEY_ERROR'] = '* This Api-key or App-key in the system does not exist, double-check their';
+	$MESS['API_KEY_NEED'] = '* Required Api-key';
+	$MESS['APP_KEY_NEED'] = '* Required App-key';
+	$MESS['YOUR_LOCATION'] = 'Your estimated location';
+?>

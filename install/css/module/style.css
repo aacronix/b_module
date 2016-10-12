@@ -1,0 +1,136 @@
+.error-block {
+  background: coral;
+  color: white;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 15px;
+  float: left; }
+
+.provider-item {
+  margin-bottom: 10px; }
+
+.provider-item .second-line {
+  margin: 5px 0 0 5px; }
+
+.provider-item .api_key_field {
+  width: 300px; }
+
+.provider-item .app_key_field {
+  width: 300px; }
+
+.miss_api_key .api_key_field {
+  border: 1px #f70900 solid !important; }
+
+.miss_app_key .app_key_field {
+  border: 1px #f70900 solid !important; }
+
+.provider-item .second-line label {
+  width: 60px;
+  display: block;
+  float: left; }
+
+body #weather_widgets .loader {
+  display: none; }
+
+body.form-sending #weather_widgets {
+  position: relative; }
+
+body.form-sending #weather_widgets .loader {
+  display: block;
+  position: absolute;
+  z-index: 9999;
+  background-color: rgba(98, 98, 98, 0.5);
+  margin: 0 auto;
+  width: 100%;
+  height: 100%; }
+
+.weather-widget-preview {
+  background: #edeef0;
+  display: block !important;
+  position: fixed !important;
+  top: 30%;
+  right: 10px;
+  z-index: 9999; }
+
+.wrong-keys{
+  text-align: center;
+}
+
+.add-new-widget-button {
+  margin: 10px 10px;
+}
+.settings-list {
+  list-style: none !important;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 !important;
+}
+
+.settings-list .item {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  width: 100%;
+}
+
+.settings-list .item .title {
+  background-color: #e0e8ea;
+  border-top: 11px solid #F5F9F9;
+  color: #4b6267;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center !important;
+  text-shadow: 0 1px #fff;
+  padding: 8px 0 10px !important;
+  width: 100%;
+}
+
+.settings-list .item .item-settings-list {
+  list-style: none;
+  padding: 0 !important
+}
+
+#view_tab_w_0 {
+  position: relative;
+  padding-right: 50px !important;
+}
+
+#add-copy-widget {
+  border: 1px solid #D3D3D3;
+  position: absolute;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  /* border-top: 1px solid #fff; */
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background-color: #fff;
+  background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)) !important;
+  background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)) !important;
+  background-image: -ms-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)) !important;
+  background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)) !important;
+  background-image: linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)) !important;
+  color: #3f4b54;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  /* line-height: 18px; */
+  text-shadow: 0 1px rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  vertical-align: middle;
+  -webkit-font-smoothing: antialiased;
+  font-size: 35px;
+  height: 100%;
+  line-height: 100%;
+  padding: 0 10px;
+  right: 0;
+  top: 0;
+}
+
+#add-copy-widget:hover {
+  background: #D3D3D3 !important;
+  background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)) !important;
+  background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)) !important;
+  background-image: -ms-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)) !important;
+  background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)) !important;
+  background-image: linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)) !important;
+}

@@ -1,0 +1,20 @@
+<?
+$MESS['MONDAY'] = "Понедельник";
+$MESS['TUESDAY'] = "Вторник";
+$MESS['WEDNESDAY'] = "Среда";
+$MESS['THURSDAY'] = "Четверг";
+$MESS['FRIDAY'] = "Пятница";
+$MESS['SATURDAY'] = "Суббота";
+$MESS['SUNDAY'] = "Воскресенье";
+$MESS['JANUARY'] = "Января";
+$MESS['FEBRUARY'] = "Февраля";
+$MESS['MARCH'] = "Марта";
+$MESS['APRIL'] = "Апреля";
+$MESS['MAY'] = "Мая";
+$MESS['JUNE'] = "Июня";
+$MESS['JULE'] = "Июля";
+$MESS['AUGUST'] = "Августа";
+$MESS['SEPTEMBER'] = "Сентября";
+$MESS['OCTOBER'] = "Октября";
+$MESS['NOVEMBER'] = "Ноября";
+$MESS['DECEMBER'] = "Декабря";

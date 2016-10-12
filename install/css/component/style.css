@@ -1,0 +1,305 @@
+@font-face {
+    font-family:'Rubik';
+    src: url('/bitrix/fonts/weather_service/others/rubik/Rubik-Regular.ttf');
+}
+
+.error-block {
+    font-family: 'Bad Script', cursive;
+    background: coral;
+    color: white;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 15px;
+    float: left;
+}
+
+.v_2_2.b-widget {
+    font-size: 14px;
+    text-align: center;
+    position: relative;
+}
+
+.v_2_2.b-widget .weather-row {
+    margin-top: 5px;
+    font-size: 1.5rem;
+    height: 30px;
+}
+
+.v_2_2.b-widget .weather-row .weather-cell {
+    display: inline-block;
+    height: 30px;
+    float: left;
+    font-size: 1.5rem;
+}
+
+.v_2_2.b-widget .weather-row .condition {
+    width: 30%;
+}
+
+.v_2_2.b-widget .weather-row .temperature {
+    width: 70%;
+}
+
+.v_2_2.b-widget .weather-row .wind-degree {
+    font-size: 2rem;
+    width: 30%;
+}
+
+.v_2_2.b-widget .weather-row .wind-speed {
+    font-size: 0.9rem;
+    line-height: 30px;
+    width: 70%;
+}
+
+.v_2_2.b-widget {
+    width: 180px;
+}
+
+.v_2_2.b-widget {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -moz-box-shadow: 0 1px 7px 0 #d3d6d8;
+    -webkit-box-shadow: 0 1px 7px 0 #d3d6d8;
+    box-shadow: 0 1px 7px 0 #d3d6d8;
+    padding: 5px;
+    margin: 10px;
+}
+
+.v_1_2.b-widget {
+    font-size: 14px;
+    text-align: center;
+    position: relative;
+}
+
+.v_1_2.b-widget .weather-row .weather-cell {
+    display: inline-block;
+    width: 100%;
+    height: 30px;
+    float: left;
+}
+
+.v_1_2.b-widget {
+    width: 70px;
+}
+
+.v_1_2.b-widget .condition {
+    font-size: 2rem;
+    padding-top: 10px;
+}
+
+.v_1_2.b-widget .temperature {
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
+.v_1_2.b-widget {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -moz-box-shadow: 0 1px 7px 0 #d3d6d8;
+    -webkit-box-shadow: 0 1px 7px 0 #d3d6d8;
+    box-shadow: 0 1px 7px 0 #d3d6d8;
+    padding: 5px;
+    margin: 10px;
+}
+
+.v_1_2.b-widget .temp-unit {
+    font-size: 1.5rem;
+}
+
+.v_2_1.b-widget {
+    font-size: 14px;
+    text-align: center;
+    position: relative;
+}
+
+.v_2_1.b-widget .weather-row {
+    margin-top: 5px;
+    font-size: 1.5rem;
+    height: 30px;
+}
+
+.v_2_1.b-widget .weather-row .weather-cell {
+    display: inline-block;
+    height: 30px;
+    float: left;
+    font-size: 1.5rem;
+}
+
+.v_2_1.b-widget .weather-row .condition {
+    width: 50%;
+}
+
+.v_2_1.b-widget .weather-row .temperature {
+    width: 50%;
+}
+
+.v_2_1.b-widget {
+    width: 200px;
+}
+
+.v_2_1.b-widget {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -moz-box-shadow: 0 1px 7px 0 #d3d6d8;
+    -webkit-box-shadow: 0 1px 7px 0 #d3d6d8;
+    box-shadow: 0 1px 7px 0 #d3d6d8;
+    padding: 5px;
+    margin: 10px;
+}
+
+.astronaut.b-widget {
+    font-family: 'Rubik', cursive;
+    font-size: 14px;
+    text-align: center;
+    position: relative;
+    width: 240px;
+}
+
+.astronaut.b-widget .weather-cell{
+    overflow: hidden;
+}
+
+.astronaut.b-widget .weather-cell .weather-condition{
+    height: 50px;
+    line-height: 50px;
+    font-size: 2rem;
+}
+
+.astronaut.b-widget .condition {
+    width: 20%;
+    float: left;
+}
+
+.astronaut.b-widget .temperature {
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
+.astronaut.b-widget {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -moz-box-shadow: 0 1px 7px 0 #d3d6d8;
+    -webkit-box-shadow: 0 1px 7px 0 #d3d6d8;
+    box-shadow: 0 1px 7px 0 #d3d6d8;
+    padding: 5px;
+    margin: 10px;
+}
+.astronaut .text {
+    line-height: 20px;
+    width: 75%;
+    float: right;
+}
+
+.astronaut .text .text-line {
+    padding: 0 !important;
+    margin: 0 !important;
+    text-align: left !important;
+}
+
+.astronaut .temp {
+    font-size: 100px;
+    font-weight: bold;
+}
+
+
+.astronaut .v-delimetr {
+    height: 40px;
+    background: #b1b1b1;
+    width: 1px;
+    display: block;
+    float: left;
+    margin: 0 3px;
+}
+
+.astronaut .temp .measure{
+    font-size: 20px;
+    vertical-align: 65px;
+}
+
+.astronaut .temp .sign{
+    font-size: 60px;
+    vertical-align: 10px;
+}
+
+.astronaut .by-provider{
+    font-size: 9px;
+    color: #6b6b6b;
+    padding: 0 !important;
+    margin: 0 !important;
+    text-align: right;
+}
+
+.circle{
+    float: left;
+    clear: both;
+    margin: 10px;
+    font-size: 14px;
+    font-family: 'Rubik', cursive;
+    width: 100px;
+    height: 100px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    -webkit-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.75);
+}
+
+.circle .weather-row{
+    width: 100%;
+}
+
+.circle .condition{
+    text-align: center;
+    padding-top: 15px;
+    height: 55px;
+    font-size: 3em;
+}
+
+.circle .temp{
+    text-align: center;
+}
+
+.elementary{
+    float: left;
+    clear: both;
+    margin: 10px;
+    height: 50px;
+    font-family: 'Rubik', cursive;
+}
+
+.elementary .condition{
+    float: left;
+    width: 50px;
+    text-align: center;
+    padding: 0 5px;
+}
+
+.elementary .text{
+    float: left;
+    text-align: left;
+    padding: 0 5px 0 0;
+}
+
+.elementary .text p{
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 25px;
+    height: 50%;
+}
+
+.elementary.b-widget .weather-cell .weather-condition{
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.5rem;
+}
+
+.error-block{
+    float: left;
+    clear: both;
+}
