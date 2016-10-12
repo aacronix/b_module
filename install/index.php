@@ -28,6 +28,7 @@
 			CopyDirFiles( $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/{$this->MODULE_ID}/install/tools", $_SERVER["DOCUMENT_ROOT"]."/bitrix/tools/{$this->MODULE_ID}", true, true );
 			CopyDirFiles( $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/{$this->MODULE_ID}/install/css/", $_SERVER["DOCUMENT_ROOT"]."/bitrix/css/{$this->MODULE_ID}/", true, true );
 			CopyDirFiles( $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/{$this->MODULE_ID}/install/fonts/", $_SERVER["DOCUMENT_ROOT"]."/bitrix/fonts/{$this->MODULE_ID}/", true, true );
+			CopyDirFiles( $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/{$this->MODULE_ID}/install/js/", $_SERVER["DOCUMENT_ROOT"]."/bitrix/js/{$this->MODULE_ID}/", true, true );
 
 			return true;
 		}
