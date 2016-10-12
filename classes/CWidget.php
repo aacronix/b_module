@@ -19,6 +19,7 @@ class CWidget
     private $_extra_text_color;
     private $_update_interval;
     private $_provider_info;
+    private $_measurement_system;
     private $_providers_list;
     private $_active_provider_ref;
 
@@ -41,6 +42,7 @@ class CWidget
             'extra_text_color' => $this->_extra_text_color,
             'update_interval' => $this->_update_interval,
             'show_provider_info' => $this->_provider_info,
+            'measurement_system' => $this->_measurement_system,
             'providers_list' => $this->_providers_list,
             'active_provider_ref' => $this->_active_provider_ref
         ];
@@ -53,6 +55,7 @@ class CWidget
         $majorTextColor = $properties[MAJOR_TEXT_COLOR_SELECTOR] != '' ? $properties[MAJOR_TEXT_COLOR_SELECTOR] : DEFAULT_FONT_COLOR;
         $backgroundColor = $properties[BACKGROUND_COLOR_SELECTOR] != '' ? $properties[BACKGROUND_COLOR_SELECTOR] : DEFAULT_BACKGROUND_COLOR;
         $weatherProvider = $properties[WEATHER_PROVIDER_SELECTOR] != '' ? $properties[WEATHER_PROVIDER_SELECTOR] : DEFAULT_PROVIDER;
+        $measurementSystem = $properties[MEASUREMENT_SYSTEM_SELECTOR] != '' ? $properties[MEASUREMENT_SYSTEM_SELECTOR] : DEFAULT_MEASUREMENT_SYSTEM;
 
         $this->_name = $name;
         $this->_latitude = $properties[LATITUDE_SELECTOR];
@@ -70,6 +73,7 @@ class CWidget
         $this->_extra_text_color = $extraTextColor;
         $this->_update_interval = $updateInterval;
         $this->_provider_info = $properties[SHOW_PROVIDER_INFO_SELECTOR];
+        $this->_measurement_system = $measurementSystem;
 
         $this->_providers_list[] = new CProvider(WUNDERGROUND, $this->_wunderground_api_key, null, ($weatherProvider == WUNDERGROUND));
         $this->_providers_list[] = new CProvider(FORECASTIO, $this->_forecastio_api_key, null, ($weatherProvider == FORECASTIO));
@@ -239,6 +243,16 @@ class CWidget
     public function setProviderInfo($providerInfo)
     {
         $this->_provider_info = $providerInfo;
+    }
+
+    public function getMeasurementSystem()
+    {
+        return $this->_measurement_system;
+    }
+
+    public function setMeasurementSystem($measurementSystem)
+    {
+        $this->_measurement_system = $measurementSystem;
     }
 
     public function getProvidersList()

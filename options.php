@@ -37,17 +37,7 @@ $majorTextColorSelector = 'major_text_color';
 $extraTextColorSelector = 'extra_text_color';
 $updateIntervalSelector = 'update_interval';
 $providerInfoSelector = 'show_provider_info';
-
-function writeLog($content, $from)
-{
-    $file = LOG . 'log.txt';
-
-    $current = file_get_contents($file);
-    $current .= $from . "  ";
-    $current .= print_r($content, true);
-    $current .= "\n";
-    file_put_contents($file, $current);
-}
+$measurementSystemSelector = 'measurement_system';
 
 IncludeModuleLangFile(__FILE__);
 
@@ -58,13 +48,6 @@ $arWidgets = [];
 while ($arWidget = $dbWidgets->Fetch()) {
     $arWidgets[] = $arWidget;
 }
-
-$widgetTabs[] = array(
-    "DIV" => DEFAULT_TAB,
-    "TAB" => 'Виджет по умолчанию',
-    'TITLE' => 'Настройки для виджета по умолчанию',
-    'ONSELECT' => "document.forms['weather_widgets'].siteTabControl_active_tab.value='" . DEFAULT_TAB . "'; app.tabChanging('" . DEFAULT_TAB . "')",
-);
 
 foreach ($arWidgets as $arWidget) {
     $widgetId = $arWidget["WIDGET_ID"];
@@ -90,16 +73,12 @@ $mainTabControl = new CAdminTabControl('mainTabControl', $mainTabs);
 $widgetTabControl = new CAdminViewTabControl('widgetsTabControl', $widgetTabs);
 
 if ($REQUEST_METHOD == 'POST' && $_POST['add-new-widget-text'] != '' && $_POST['add-new-widget-button'] != '') {
-    writeLog($_POST, '$_POST ');
-
     main\CWeatherWidget::InsertNewWidget($_POST['add-new-widget-text']);
 
     LocalRedirect($APPLICATION->GetCurPage() . "?mid=" . urlencode(WEATHER_SERVICE_MODULE_ID) . "&lang=" . urlencode(LANGUAGE_ID) . "&" . $mainTabControl->ActiveTabParam() . ($_REQUEST["siteTabControl_active_tab"] <> '' ? "&siteTabControl_active_tab=" . urlencode($_REQUEST["siteTabControl_active_tab"]) : ''));
 }
 
 if ($REQUEST_METHOD == 'POST' && $_POST['add-new-widget-text'] != '' && $_POST['add-new-widget-button'] != '') {
-    writeLog($_POST, '$_POST ');
-
     main\CWeatherWidget::InsertNewWidget($_POST['add-new-widget-text']);
 
     LocalRedirect($APPLICATION->GetCurPage() . "?mid=" . urlencode(WEATHER_SERVICE_MODULE_ID) . "&lang=" . urlencode(LANGUAGE_ID) . "&" . $mainTabControl->ActiveTabParam() . ($_REQUEST["siteTabControl_active_tab"] <> '' ? "&siteTabControl_active_tab=" . urlencode($_REQUEST["siteTabControl_active_tab"]) : ''));
@@ -130,6 +109,7 @@ if ($REQUEST_METHOD == 'POST' && $_POST['Update'] != '' && $_POST['Update'] == '
         main\CWeatherOption::InsertOption($widgetId, "$majorTextColorSelector", $_POST[$majorTextColorSelector . '_' . $widgetId]);
         main\CWeatherOption::InsertOption($widgetId, "$extraTextColorSelector", $_POST[$extraTextColorSelector . '_' . $widgetId]);
         main\CWeatherOption::InsertOption($widgetId, "$updateIntervalSelector", $_POST[$updateIntervalSelector . '_' . $widgetId]);
+        main\CWeatherOption::InsertOption($widgetId, "$measurementSystemSelector", $_POST[$measurementSystemSelector . '_' . $widgetId]);
 
         if (isset($_POST[$providerInfoSelector]) && $_POST[$providerInfoSelector] != 'Y') {
             main\CWeatherOption::InsertOption($widgetId, "$providerInfoSelector", 'N');
@@ -220,6 +200,7 @@ $_REQUEST["siteTabControl_active_tab"] = DEFAULT_TAB;
             $updateInterval = $parametres['update_interval'];
             $customCss = $parametres['custom_css'];
             $showProviderInfo = $parametres['show_provider_info'];
+            $measurementSystem = $parametres['measurement_system'];
             ?>
             <ul class="item-settings-list">
                 <li class="item">
@@ -329,7 +310,7 @@ $_REQUEST["siteTabControl_active_tab"] = DEFAULT_TAB;
                            value="<?= $widgetTitle ?>"/>
                 </li>
                 <li class="item">
-                    <label for="latitude_<?= $suffix ?>"><?= GetMessage('WIDGET_UPDATE_INTERVAL') ?></label>
+                    <label for="update_interval_<?= $suffix ?>"><?= GetMessage('WIDGET_UPDATE_INTERVAL') ?></label>
                     <select name="update_interval_<?= $suffix ?>"
                             id="update-interval_<?= $suffix ?>">
                         <option value="20"<?= ($updateInterval == 20) ? 'selected' : ''; ?>>
@@ -342,6 +323,16 @@ $_REQUEST["siteTabControl_active_tab"] = DEFAULT_TAB;
                             2 <?= GetMessage('HOURS_GENITIVE_2') ?></option>
                         <option value="360" <?= ($updateInterval == 360) ? 'selected' : ''; ?>>
                             6 <?= GetMessage('HOURS_GENITIVE') ?></option>
+                    </select>
+                </li>
+                <li class="item">
+                    <label for="measurement_system_<?= $suffix ?>">Система измерений</label>
+                    <select name="measurement_system_<?= $suffix ?>"
+                            id="measurement_system_<?= $suffix ?>">
+                        <option value="metrical"<?= ($measurementSystem == 'metrical') ? 'selected' : ''; ?>>
+                            Метрическая</option>
+                        <option value="britain"<?= ($measurementSystem == 'britain') ? 'selected' : ''; ?>>
+                            Британская</option>
                     </select>
                 </li>
                 <li class="item">

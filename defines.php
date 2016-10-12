@@ -19,6 +19,7 @@ define('APIXU', 'apixu');
 define('OPENWEATHER', 'openweather');
 define('YAHOOWEATHER', 'yahooweather');
 define('DEFAULT_PROVIDER', YAHOOWEATHER);
+define('DEFAULT_MEASUREMENT_SYSTEM', 'metrical');
 
 define('DEFAULT_UPDATE_INTERVAL', 120);
 define('DEFAULT_BACKGROUND_COLOR', 'rgba(0, 0, 0, 1)');
@@ -41,3 +42,4 @@ define("MAJOR_TEXT_COLOR_SELECTOR", "major_text_color");
 define("EXTRA_TEXT_COLOR_SELECTOR", "extra_text_color");
 define("UPDATE_INTERVAL_SELECTOR", "update_interval");
 define("SHOW_PROVIDER_INFO_SELECTOR", "show_provider_info");
+define("MEASUREMENT_SYSTEM_SELECTOR", "measurement_system");
