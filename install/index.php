@@ -34,10 +34,11 @@
 		}
 
 		function UnInstallFiles() {
-			DeleteDirFiles( $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/{$this->MODULE_ID}/install/tools/", $_SERVER["DOCUMENT_ROOT"]."/bitrix/tools/{$this->MODULE_ID}" );
 			DeleteDirFilesEx( "/bitrix/components/".$this->MODULE_ID );
 			DeleteDirFilesEx( "/bitrix/css/{$this->MODULE_ID}/" );
 			DeleteDirFilesEx( "/bitrix/fonts/{$this->MODULE_ID}/" );
+			DeleteDirFilesEx( "/bitrix/js/{$this->MODULE_ID}/" );
+			DeleteDirFilesEx( "/bitrix/tools/{$this->MODULE_ID}/" );
 
 			return true;
 		}
