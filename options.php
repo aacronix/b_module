@@ -54,7 +54,6 @@ foreach ($arWidgets as $arWidget) {
     $widgetTabs[] = array(
         "DIV" => $widgetId,
         "TAB" => htmlspecialcharsbx($arWidget["NAME"]),
-        'TITLE' => 'Настройка: ' . htmlspecialcharsbx($arWidget["NAME"]),
         'ONSELECT' => "document.forms['weather_widgets'].siteTabControl_active_tab.value='$widgetId'; app.tabChanging('$widgetId')",
     );
 }
@@ -294,7 +293,7 @@ $_REQUEST["siteTabControl_active_tab"] = DEFAULT_TAB;
                     <? endif; ?>
                     <input type="button" class="update-preview" value="<?= GetMessage('UPDATE_PREVIEW') ?>">
                 </li>
-                <li class="item">
+                <li class="item" style="display: none">
                     <p class="title"><?= GetMessage('ESTABLISHED_COORDINATES') ?></p>
                     <label for="latitude_<?= $suffix ?>"><?= GetMessage('LATITUDE') ?>:</label>
                     <input type="text" name="latitude_<?= $suffix ?>" id="latitude_<?= $suffix ?>"
@@ -330,9 +329,11 @@ $_REQUEST["siteTabControl_active_tab"] = DEFAULT_TAB;
                     <select name="measurement_system_<?= $suffix ?>"
                             id="measurement_system_<?= $suffix ?>">
                         <option value="metrical"<?= ($measurementSystem == 'metrical') ? 'selected' : ''; ?>>
-                            Метрическая</option>
+                            Метрическая
+                        </option>
                         <option value="britain"<?= ($measurementSystem == 'britain') ? 'selected' : ''; ?>>
-                            Британская</option>
+                            Британская
+                        </option>
                     </select>
                 </li>
                 <li class="item">
@@ -358,16 +359,14 @@ $_REQUEST["siteTabControl_active_tab"] = DEFAULT_TAB;
                         echo 'checked';
                     } ?>/>
                 </li>
-                <? if ($suffix != DEFAULT_TAB) : ?>
-                    <li class="item">
-                        <label for=""></label>
-                        <input type="text" value="<?= $widgetName ?>" name="widget_name_text_<?= $suffix ?>"
-                               id="widget_name_text_<?= $suffix ?>">
-                        <input type="button" value="Переименовать виджет" class="copy-widget"
-                               name="widget_name_<?= $suffix ?>" id="widget_name_<?= $suffix ?>"
-                               onclick="app.renameWidget()">
-                    </li>
-                <? endif; ?>
+                <li class="item">
+                    <label for=""></label>
+                    <input type="text" value="<?= $widgetName ?>" name="widget_name_text_<?= $suffix ?>"
+                           id="widget_name_text_<?= $suffix ?>">
+                    <input type="button" value="Переименовать виджет" class="copy-widget"
+                           name="widget_name_<?= $suffix ?>" id="widget_name_<?= $suffix ?>"
+                           onclick="app.renameWidget()">
+                </li>
                 <? endforeach; ?>
                 </li>
             </ul>
@@ -819,6 +818,7 @@ endif;
         function init() {
             const DEFAULT_ZOOM = 10;
             var gCollection = new ymaps.GeoObjectCollection();
+            var defaultCenter;
             var geolocation = ymaps.geolocation,
                 myMap = new ymaps.Map('map', {
                     center: [55, 34],
@@ -859,11 +859,6 @@ endif;
                 })
             }
 
-            function refreshMap() {
-                myMap.geoObjects.removeAll(gCollection);
-                myMap.geoObjects.add(gCollection);
-            }
-
             geolocation.get({
                 provider: 'yandex',
                 mapStateAutoApply: true
@@ -873,6 +868,7 @@ endif;
                     balloonContentBody: '<?= GetMessage('YOUR_LOCATION') ?>'
                 });
                 myMap.geoObjects.add(result.geoObjects);
+                console.log(result.geoObjects.get(0).getCenter());
             });
 
             geolocation.get({
@@ -881,6 +877,7 @@ endif;
             }).then(function (result) {
                 result.geoObjects.options.set('preset', 'islands#blueCircleIcon');
                 myMap.geoObjects.add(result.geoObjects);
+                console.log(result.geoObjects.get(0).getCenter());
             });
 
             myMap.events.add('click', function (e) {
@@ -935,9 +932,11 @@ endif;
                     }
                 });
 
-                myMap.setCenter(coords, DEFAULT_ZOOM, {
-                    checkZoomRange: true
-                });
+                if (coords[0] != "") {
+                    myMap.setCenter(coords, DEFAULT_ZOOM, {
+                        checkZoomRange: true
+                    });
+                }
 
                 gCollection.add(position);
                 getWeather(currentWidget);
@@ -1033,7 +1032,7 @@ endif;
                     widgetId: currentWidget,
                     newName: widgetNameVal
                 };
-
+                
                 $.ajax({
                     type: "GET",
                     url: url,
@@ -1043,9 +1042,12 @@ endif;
                         $('body').removeClass('form-sending');
                     },
                     success: function (data) {
-                        console.log(data);
                         widgetNameElement.val(data);
                         $('#view_tab_' + currentWidget).text(data);
+
+                        if (currentWidget == "<?=DEFAULT_TAB?>"){
+                            appendButton();
+                        }
                     }
                 });
             }

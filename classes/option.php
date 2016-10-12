@@ -48,6 +48,18 @@ class CWeatherOption
         return false;
     }
 
+    public static function DeleteOptionsByWidgetId($widgetId){
+        global $DB;
+
+        $strSqlDelete = sprintf("WIDGET_ID='%s'", $widgetId);
+
+        $strSql = "DELETE FROM `" . self::DATABASE . "` WHERE " . $strSqlDelete;
+
+        $res = $DB->Query($strSql, true);
+
+        return true;
+    }
+
     public static function InsertOption($widgetId, $name, $value){
         global $DB;
 

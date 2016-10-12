@@ -1,5 +1,6 @@
 <?php
 namespace TL\weather\main;
+require_once($_SERVER['DOCUMENT_ROOT'] . "/bitrix/modules/weather_service/classes/option.php");
 
 class CWeatherWidget
 {
@@ -16,6 +17,8 @@ class CWeatherWidget
         $strSql = "DELETE FROM `" . self::DATABASE . "` WHERE WIDGET_ID='$widgetId'";
 
         $res = $DB->Query($strSql, false, "FILE: " . __FILE__ . "<br> LINE: " . __LINE__);
+
+        CWeatherOption::DeleteOptionsByWidgetId($widgetId);
 
         return $res;
     }

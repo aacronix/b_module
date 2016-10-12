@@ -17,11 +17,6 @@ CREATE TABLE IF NOT EXISTS b_weather_widget_option
 	PRIMARY KEY (ID)
 );
 
-DELIMITER //
-CREATE TRIGGER `delete_childs` AFTER DELETE ON b_weather_widget
-FOR EACH ROW BEGIN
-   DELETE FROM b_weather_widget_option WHERE WIDGET_ID=OLD.WIDGET_ID;
-END;
 
 INSERT INTO b_weather_widget(WIDGET_ID, NAME, SUPER) VALUES ('w_0', 'Default', 1);
 INSERT INTO b_weather_widget_option(WIDGET_ID, NAME) VALUES ('w_0', 'weather_provider');
