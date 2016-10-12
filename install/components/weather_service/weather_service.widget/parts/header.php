@@ -67,14 +67,26 @@ $from = 'server';
 //endif;
 
 $icon = $weather["icon"];
-$temp = $weather["temp"];
 
+$measurementSystem = $widget->getMeasurementSystem();
+var_dump($measurementSystem);
+
+$temp = $weather["temp"];
 $windSpeed = $weather["wind"]["windSpeed"];
+$tempUnit = 'C';
+$windSpeedUnit = 'км/ч';
+
+if ($measurementSystem == 'britain'){
+    $temp = WF\celsiusToFahrenheit($temp);
+    $windSpeed = WF\kphToMph($windSpeed);
+    $tempUnit = 'F';
+    $windSpeedUnit = 'mph';
+}
+
 $windDegree = $weather["wind"]["windDegree"];
 $windDegreeInt = WF\roundToInt($windDegree);
 
 $windDirectionMessage = GetMessage(WF\getWindDirection($windDegree));
-$windSpeedUnit = GetMessage('WIND_SPEED_KPH');
 
 if ($widget->getProviderInfo() == 'Y') {
     $providerInfo = '<p class=\'by-provider\'>get from ' . $from . '. provided by ' . $activeProvider->getName() . '</p>';

@@ -46,7 +46,7 @@ color: {$widget->getExtraTextColor()};
             </div>
         </div>
         <div class='weather-row'>
-            <div class='temp'><span class='sign'>&nbsp;</span>$temp<span class='measure'>&deg;C</span></div>
+            <div class='temp'><span class='sign'>&nbsp;</span>$temp<span class='measure'>&deg;$tempUnit</span></div>
         </div>
         $providerInfo
 </div></div>
