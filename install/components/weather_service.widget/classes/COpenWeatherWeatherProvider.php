@@ -107,7 +107,7 @@ class COpenWeatherWeatherProvider implements IWeatherProvider
     }
     
     // проверка api ключа на соответствие
-    public function isValidApiKey($apiKey){
+    public function isValidApiKey($apiKey, $appKey=null){
         $query = "?lat=55.75&lon=37.61&units=imperial&appid=";
 
         $query_url = self::API_ENDPOINT . $query . $apiKey;

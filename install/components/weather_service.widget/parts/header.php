@@ -69,7 +69,6 @@ $from = 'server';
 $icon = $weather["icon"];
 
 $measurementSystem = $widget->getMeasurementSystem();
-var_dump($measurementSystem);
 
 $temp = $weather["temp"];
 $windSpeed = $weather["wind"]["windSpeed"];
