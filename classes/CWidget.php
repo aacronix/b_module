@@ -27,8 +27,8 @@ class CWidget
     {
         return [
             'name' => $this->_name,
-            'latitude' => $this->_latitude,
-            'longitude' => $this->_longitude,
+            'latitude' => floatval($this->_latitude),
+            'longitude' => floatval($this->_longitude),
             'weather_provider' => $this->_weather_provider,
             'widget_title' => $this->_title,
             'wunderground_api_key' => $this->_wunderground_api_key,
@@ -43,7 +43,7 @@ class CWidget
             'update_interval' => $this->_update_interval,
             'show_provider_info' => $this->_provider_info,
             'measurement_system' => $this->_measurement_system,
-            'providers_list' => $this->_providers_list,
+            'providers_list' => $this->getJsonProviderList(),
             'active_provider_ref' => $this->_active_provider_ref
         ];
     }
@@ -273,6 +273,16 @@ class CWidget
                 break;
             }
         }
+    }
+
+    public function getJsonProviderList(){
+        $providersList = '';
+
+        foreach ($this->_providers_list as $provider) {
+            $providersList[] = $provider->toJson();
+        }
+
+        return $providersList;
     }
 
     public function getActiveProviderRef()

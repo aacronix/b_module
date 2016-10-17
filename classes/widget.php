@@ -51,7 +51,7 @@ class CWeatherWidget
         return $widgetId;
     }
 
-    public static function SelectWeatherWidgetsList(&$by, &$order, $arFilter = array())
+    public static function SelectWeatherWidgetsList()
     {
         global $DB;
 
