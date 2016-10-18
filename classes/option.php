@@ -34,7 +34,6 @@ class CWeatherOption
             $objects[] = new \CWidget($key, $value);
         }
 
-
         return $objects;
     }
 

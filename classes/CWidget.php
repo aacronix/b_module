@@ -21,7 +21,6 @@ class CWidget
     private $_provider_info;
     private $_measurement_system;
     private $_providers_list;
-    private $_active_provider_ref;
 
     public function toJson()
     {
@@ -31,12 +30,6 @@ class CWidget
             'longitude' => floatval($this->_longitude),
             'weather_provider' => $this->_weather_provider,
             'widget_title' => $this->_title,
-            'wunderground_api_key' => $this->_wunderground_api_key,
-            'forecastio_api_key' => $this->_forecastio_api_key,
-            'weathertrigger_api_key' => $this->_weathertrigger_api_key,
-            'weathertrigger_app_key' => $this->_weathertrigger_app_key,
-            'apixu_api_key' => $this->_apixu_api_key,
-            'openweather_api_key' => $this->_openweather_api_key,
             'background_color' => $this->_background_color,
             'major_text_color' => $this->_major_text_color,
             'extra_text_color' => $this->_extra_text_color,
@@ -44,7 +37,6 @@ class CWidget
             'show_provider_info' => $this->_provider_info,
             'measurement_system' => $this->_measurement_system,
             'providers_list' => $this->getJsonProviderList(),
-            'active_provider_ref' => $this->_active_provider_ref
         ];
     }
 
@@ -56,33 +48,33 @@ class CWidget
         $backgroundColor = $properties[BACKGROUND_COLOR_SELECTOR] != '' ? $properties[BACKGROUND_COLOR_SELECTOR] : DEFAULT_BACKGROUND_COLOR;
         $weatherProvider = $properties[WEATHER_PROVIDER_SELECTOR] != '' ? $properties[WEATHER_PROVIDER_SELECTOR] : DEFAULT_PROVIDER;
         $measurementSystem = $properties[MEASUREMENT_SYSTEM_SELECTOR] != '' ? $properties[MEASUREMENT_SYSTEM_SELECTOR] : DEFAULT_MEASUREMENT_SYSTEM;
+        $showProviderInfo = $properties[SHOW_PROVIDER_INFO_SELECTOR] != '' ? $properties[SHOW_PROVIDER_INFO_SELECTOR] : DEFAULT_SHOW_PROVIDER_INFO;
+        $widgetTitle = $properties[WIDGET_TITLE_SELECTOR] != '' ? $properties[WIDGET_TITLE_SELECTOR] : DEFAULT_WIDGET_TITLE;
 
         $this->_name = $name;
         $this->_latitude = $properties[LATITUDE_SELECTOR];
         $this->_longitude = $properties[LONGITUDE_SELECTOR];
         $this->_weather_provider = $weatherProvider;
-        $this->_title = $properties[WIDGET_TITLE_SELECTOR];
-        $this->_wunderground_api_key = $properties[WUNDERGROUND_API_KEY_SELECTOR];
-        $this->_forecastio_api_key = $properties[FORECASTIO_API_KEY_SELECTOR];
-        $this->_weathertrigger_api_key = $properties[WEATHERTRIGGER_API_KEY_SELECTOR];
-        $this->_weathertrigger_app_key = $properties[WEATHERTRIGGER_APP_KEY_SELECTOR];
-        $this->_apixu_api_key = $properties[APIXU_API_KEY_SELECTOR];
-        $this->_openweather_api_key = $properties[OPENWEATHER_API_KEY_SELECTOR];
+        $this->_title = $widgetTitle;
+        $this->_wunderground_api_key = $properties[WUNDERGROUND_API_KEY_SELECTOR] == null ? '' : $properties[WUNDERGROUND_API_KEY_SELECTOR];
+        $this->_forecastio_api_key = $properties[FORECASTIO_API_KEY_SELECTOR] == null ? '' : $properties[FORECASTIO_API_KEY_SELECTOR];
+        $this->_weathertrigger_api_key = $properties[WEATHERTRIGGER_API_KEY_SELECTOR] == null ? '' : $properties[WEATHERTRIGGER_API_KEY_SELECTOR];
+        $this->_weathertrigger_app_key = $properties[WEATHERTRIGGER_APP_KEY_SELECTOR] == null ? '' : $properties[WEATHERTRIGGER_APP_KEY_SELECTOR];
+        $this->_apixu_api_key = $properties[APIXU_API_KEY_SELECTOR] == null ? '' : $properties[APIXU_API_KEY_SELECTOR];
+        $this->_openweather_api_key = $properties[OPENWEATHER_API_KEY_SELECTOR] == null ? '' : $properties[OPENWEATHER_API_KEY_SELECTOR];
         $this->_background_color = $backgroundColor;
         $this->_major_text_color = $majorTextColor;
         $this->_extra_text_color = $extraTextColor;
         $this->_update_interval = $updateInterval;
-        $this->_provider_info = $properties[SHOW_PROVIDER_INFO_SELECTOR];
+        $this->_provider_info = $showProviderInfo;
         $this->_measurement_system = $measurementSystem;
 
-        $this->_providers_list[] = new CProvider(WUNDERGROUND, $this->_wunderground_api_key, null, ($weatherProvider == WUNDERGROUND));
-        $this->_providers_list[] = new CProvider(FORECASTIO, $this->_forecastio_api_key, null, ($weatherProvider == FORECASTIO));
+        $this->_providers_list[] = new CProvider(WUNDERGROUND, $this->_wunderground_api_key, '', ($weatherProvider == WUNDERGROUND));
+        $this->_providers_list[] = new CProvider(FORECASTIO, $this->_forecastio_api_key, '', ($weatherProvider == FORECASTIO));
         $this->_providers_list[] = new CProvider(WEATHERTRIGGER, $this->_weathertrigger_api_key, $this->_weathertrigger_app_key, ($weatherProvider == WEATHERTRIGGER));
-        $this->_providers_list[] = new CProvider(APIXU, $this->_apixu_api_key, null, ($weatherProvider == APIXU));
-        $this->_providers_list[] = new CProvider(OPENWEATHER, $this->_openweather_api_key, null, ($weatherProvider == OPENWEATHER));
-        $this->_providers_list[] = new CProvider(YAHOOWEATHER, null, null, ($weatherProvider == YAHOOWEATHER));
-
-        $this->setActiveProviderRef();
+        $this->_providers_list[] = new CProvider(APIXU, $this->_apixu_api_key, '', ($weatherProvider == APIXU));
+        $this->_providers_list[] = new CProvider(OPENWEATHER, $this->_openweather_api_key, '', ($weatherProvider == OPENWEATHER));
+        $this->_providers_list[] = new CProvider(YAHOOWEATHER, '', '', ($weatherProvider == YAHOOWEATHER));
     }
 
     public function getName()

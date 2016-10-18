@@ -39,7 +39,7 @@ Class weather_service extends CModule
 
     function InstallFiles($arParams = array())
     {
-        CopyDirFiles($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/{$this->MODULE_ID}/install/components", $_SERVER["DOCUMENT_ROOT"] . "/bitrix/components", true, true);
+        CopyDirFiles($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/{$this->MODULE_ID}/install/components", $_SERVER["DOCUMENT_ROOT"] . "/bitrix/components/{$this->MODULE_ID}", true, true);
         CopyDirFiles($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/{$this->MODULE_ID}/install/tools", $_SERVER["DOCUMENT_ROOT"] . "/bitrix/tools/{$this->MODULE_ID}", true, true);
         CopyDirFiles($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/{$this->MODULE_ID}/install/css/", $_SERVER["DOCUMENT_ROOT"] . "/bitrix/css/{$this->MODULE_ID}/", true, true);
         CopyDirFiles($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/{$this->MODULE_ID}/install/fonts/", $_SERVER["DOCUMENT_ROOT"] . "/bitrix/fonts/{$this->MODULE_ID}/", true, true);

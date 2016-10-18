@@ -20,6 +20,8 @@ define('OPENWEATHER', 'openweather');
 define('YAHOOWEATHER', 'yahooweather');
 define('DEFAULT_PROVIDER', YAHOOWEATHER);
 define('DEFAULT_MEASUREMENT_SYSTEM', 'metrical');
+define('DEFAULT_SHOW_PROVIDER_INFO', false);
+define('DEFAULT_WIDGET_TITLE', 'default');
 
 define('DEFAULT_UPDATE_INTERVAL', 120);
 define('DEFAULT_BACKGROUND_COLOR', 'rgba(0, 0, 0, 1)');
