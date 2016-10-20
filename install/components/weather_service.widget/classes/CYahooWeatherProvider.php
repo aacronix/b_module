@@ -15,6 +15,7 @@ class CYahooWeatherProvider implements IWeatherProvider
     const TRUE_KEY = 1;
     const BAD_KEY = 0;
     const SERVICE_UNAVAILABLE = 3;
+    const LESS_KEY = 2;
 
     private $apiKey;
     private $appKey;

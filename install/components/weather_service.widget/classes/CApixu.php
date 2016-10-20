@@ -13,6 +13,7 @@ class CApixu implements IWeatherProvider
 {
     const API_ENDPOINT = 'http://api.apixu.com/v1/current.json';
     const TRUE_KEY = 1;
+    const LESS_KEY = 2;
     const BAD_KEY = 0;
     const SERVICE_UNAVAILABLE = 3;
 
@@ -84,6 +85,8 @@ class CApixu implements IWeatherProvider
     // проверка api ключа на соответствие
     public function isValidApiKey($apiKey, $appKey = null)
     {
+        if (strlen($apiKey) < 1) return array("code" => self::LESS_KEY);
+
         $query_url = self::API_ENDPOINT . "?key={$apiKey}&q=55.75,37.61";
 
         $session = curl_init($query_url);

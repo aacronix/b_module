@@ -1,6 +1,7 @@
 <?php
 
 namespace TL\weather\CWunderground;
+
 use TL\weather\IWeatherProvider;
 
 use TL\weather\weather_functions as WF;
@@ -15,6 +16,7 @@ class CWunderground implements IWeatherProvider
     const TRUE_KEY = 1;
     const BAD_KEY = 0;
     const SERVICE_UNAVAILABLE = 3;
+    const LESS_KEY = 2;
 
     private $apiKey;
     private $appKey;
@@ -53,11 +55,14 @@ class CWunderground implements IWeatherProvider
     }
 
     // проверка api ключа на соответствие
-    public function isValidApiKey($apiKey){
+    public function isValidApiKey($apiKey)
+    {
+        if (strlen($apiKey) < 1) return array("code" => self::LESS_KEY);
+        
         $ERROR_CODE = "keynotfound";
 
         $queryTail = "geolookup/conditions/q";
-        $query = $apiKey ."/{$queryTail}/55.75,37.61.json";
+        $query = $apiKey . "/{$queryTail}/55.75,37.61.json";
 
         $query_url = self::API_ENDPOINT . $query;
 
@@ -67,19 +72,19 @@ class CWunderground implements IWeatherProvider
 
         $responseHttpCode = curl_getinfo($session, CURLINFO_HTTP_CODE);
 
-        if ($responseHttpCode == '404'){
+        if ($responseHttpCode == '404') {
             return array("code" => self::SERVICE_UNAVAILABLE);
         }
 
         $response = json_decode($json, true);
 
-        return (($response["response"]["error"]["type"] == $ERROR_CODE)? array("code" => self::BAD_KEY) : array("code" => self::TRUE_KEY));
+        return (($response["response"]["error"]["type"] == $ERROR_CODE) ? array("code" => self::BAD_KEY) : array("code" => self::TRUE_KEY));
     }
 
     public function getWeather($latitude, $longitude, $unit)
     {
         $queryTail = "geolookup/conditions/q";
-        $query = $this->apiKey ."/{$queryTail}/{$latitude},{$longitude}.json";
+        $query = $this->apiKey . "/{$queryTail}/{$latitude},{$longitude}.json";
 
         $query_url = self::API_ENDPOINT . $query;
 
@@ -89,7 +94,7 @@ class CWunderground implements IWeatherProvider
 
         $responseHttpCode = curl_getinfo($session, CURLINFO_HTTP_CODE);
 
-        if ($responseHttpCode == '404'){
+        if ($responseHttpCode == '404') {
             return array("code" => self::SERVICE_UNAVAILABLE);
         }
 

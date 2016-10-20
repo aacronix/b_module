@@ -37,7 +37,7 @@ class CWeatherWidget
     public static function InsertNewWidget($name)
     {
         global $DB;
-        $strSql = "INSERT INTO `" . self::DATABASE . "` (ACTIVE, NAME, SUPER) VALUES (1, '$name', 0)";
+        $strSql = "INSERT INTO `" . self::DATABASE . "` (ACTIVE, NAME, SUPER) VALUES (1, '$name', false)";
 
         $res = $DB->Query($strSql, false, "FILE: " . __FILE__ . "<br> LINE: " . __LINE__);
 

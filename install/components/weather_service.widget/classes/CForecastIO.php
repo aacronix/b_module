@@ -16,6 +16,7 @@ class CForecastIO implements IWeatherProvider
     const BAD_KEY = 0;
     const SERVICE_UNAVAILABLE = 3;
     const MIXED_ERROR = 4;
+    const LESS_KEY = 2;
 
     private $apiKey;
     private $appKey;
@@ -50,6 +51,8 @@ class CForecastIO implements IWeatherProvider
     // проверка api ключа на соответствие
     public function isValidApiKey($apiKey)
     {
+        if (strlen($apiKey) < 1) return array("code" => self::LESS_KEY);
+        
         $ERROR_CODE = "404";
 
         $query = $apiKey . "/55.75,37.61";

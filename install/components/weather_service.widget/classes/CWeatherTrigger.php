@@ -15,6 +15,7 @@ class CWeatherTrigger implements IWeatherProvider
     const TRUE_KEY = 1;
     const BAD_KEY = 0;
     const SERVICE_UNAVAILABLE = 3;
+    const LESS_KEY = 2;
 
     private $apiKey;
     private $appKey;
@@ -84,6 +85,8 @@ class CWeatherTrigger implements IWeatherProvider
     // проверка api ключа на соответствие
     public function isValidApiKey($apiKey, $appKey)
     {
+        if (strlen($apiKey) < 1 || strlen($appKey) < 1) return array("code" => self::LESS_KEY);
+        
         $ERROR_CODE = "403";
 
         $query = "55.75,37.61?app_id={$appKey}&app_key=" . $apiKey;

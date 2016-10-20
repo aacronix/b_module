@@ -1,12 +1,13 @@
 <?php
 
 namespace TL\weather\COpenWeatherWeatherProvider;
+
 use TL\weather\IWeatherProvider;
 use TL\weather\weather_functions as WF;
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/bitrix/modules/weather_service/defines.php");
 
-require_once FUNCTIONS_ROOT. '/functions.php';
+require_once FUNCTIONS_ROOT . '/functions.php';
 
 class COpenWeatherWeatherProvider implements IWeatherProvider
 {
@@ -15,6 +16,7 @@ class COpenWeatherWeatherProvider implements IWeatherProvider
     const TRUE_KEY = 1;
     const BAD_KEY = 0;
     const SERVICE_UNAVAILABLE = 3;
+    const LESS_KEY = 2;
 
     private $apiKey;
     private $appKey;
@@ -105,9 +107,12 @@ class COpenWeatherWeatherProvider implements IWeatherProvider
 
         return $weatherTable[$code];
     }
-    
+
     // проверка api ключа на соответствие
-    public function isValidApiKey($apiKey, $appKey=null){
+    public function isValidApiKey($apiKey, $appKey = null)
+    {
+        if (strlen($apiKey) < 1) return array("code" => self::LESS_KEY);
+        
         $query = "?lat=55.75&lon=37.61&units=imperial&appid=";
 
         $query_url = self::API_ENDPOINT . $query . $apiKey;
@@ -117,7 +122,7 @@ class COpenWeatherWeatherProvider implements IWeatherProvider
         $json = curl_exec($session);
         $responseHttpCode = curl_getinfo($session, CURLINFO_HTTP_CODE);
 
-        if ($responseHttpCode == '404'){
+        if ($responseHttpCode == '404') {
             return array("code" => self::SERVICE_UNAVAILABLE);
         }
 
@@ -139,7 +144,7 @@ class COpenWeatherWeatherProvider implements IWeatherProvider
 
         $responseHttpCode = curl_getinfo($session, CURLINFO_HTTP_CODE);
 
-        if ($responseHttpCode == '404'){
+        if ($responseHttpCode == '404') {
             return array("code" => self::SERVICE_UNAVAILABLE);
         }
 
@@ -148,7 +153,7 @@ class COpenWeatherWeatherProvider implements IWeatherProvider
         $pointPosition = array("latitude" => $latitude, "longitude" => $longitude);
         $icon = $this->getWeatherIcon($weatherResult["weather"][0]["id"]);
 
-        if ($unit == 'metrical'){
+        if ($unit == 'metrical') {
             $temp = WF\fahrenheitToCelsius($weatherResult["main"]["temp"]);
             $windSpeed = WF\mphToKph($weatherResult["wind"]["speed"]);
         } else {
