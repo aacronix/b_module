@@ -1,6 +1,7 @@
 <?php
 namespace TL\weather\main;
 require_once($_SERVER['DOCUMENT_ROOT'] . "/bitrix/modules/weather_service/classes/option.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/bitrix/modules/weather_service/classes/CWidget.php");
 
 class CWeatherWidget
 {
@@ -60,5 +61,22 @@ class CWeatherWidget
         $res = $DB->Query($strSql, false, "FILE: " . __FILE__ . "<br> LINE: " . __LINE__);
 
         return $res;
+    }
+
+    public static function GetWeatherWidgetByWidgetId($widgetId)
+    {
+        global $DB;
+
+        $strSql = "SELECT * FROM b_weather_widget WHERE WIDGET_ID=" . "'$widgetId'";;
+
+        $res = $DB->Query($strSql, false, "FILE: " . __FILE__ . "<br> LINE: " . __LINE__);
+
+        $widget = NULL;
+
+        while ($option = $res->Fetch()) {
+            $widget = new \CWidget($widgetId, $option["ACTIVE"], $option["NAME"], $option["SUPER"]);
+        }
+
+        return $widget;
     }
 }

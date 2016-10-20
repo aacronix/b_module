@@ -1,6 +1,6 @@
 <?php
 namespace TL\weather\main;
-require_once($_SERVER['DOCUMENT_ROOT'] . "/bitrix/modules/weather_service/classes/CWidget.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/bitrix/modules/weather_service/classes/CWidgetOptions.php");
 
 class CWeatherOption
 {
@@ -10,14 +10,39 @@ class CWeatherOption
     {
     }
 
+    public static function InsertOptionsList($optionsArray, $widgetId)
+    {
+        global $DB;
+
+        $insertStr = "INSERT INTO `" . self::DATABASE . "` (WIDGET_ID, NAME, VALUE) VALUES ";
+
+        $len = count($optionsArray);
+        $iterator = 0;
+
+        foreach ($optionsArray as $key => $value) {
+            $iterator++;
+            $insertStr .= sprintf("('%s', '%s', '%s')", $widgetId, $key, $value);
+
+            if ($iterator == $len) {
+                $insertStr .= ";";
+            } else {
+                $insertStr .= ", ";
+            }
+        }
+
+        $res = $DB->Query($insertStr, true);
+
+        return true;
+    }
+
     public static function GetOptionList($id = false)
     {
         global $DB;
 
-        $strSql = "SELECT * FROM `" . self::DATABASE. "`";
-        
-        if ($id){
-            $strSql .= " WHERE WIDGET_ID='" . $id."'";
+        $strSql = "SELECT * FROM `" . self::DATABASE . "`";
+
+        if ($id) {
+            $strSql .= " WHERE WIDGET_ID='" . $id . "'";
         }
 
         $res = $DB->Query($strSql, false, "FILE: " . __FILE__ . "<br> LINE: " . __LINE__);
@@ -30,8 +55,8 @@ class CWeatherOption
 
         $objects = [];
 
-        foreach ($optionList as $key => $value){
-            $objects[] = new \CWidget($key, $value);
+        foreach ($optionList as $key => $value) {
+            $objects[] = new \CWidgetOptions($key, $value);
         }
 
         return $objects;
@@ -39,15 +64,15 @@ class CWeatherOption
 
     public static function hasResult($result)
     {
-        if ($row = $result->fetch())
-        {
+        if ($row = $result->fetch()) {
             return true;
         }
 
         return false;
     }
 
-    public static function DeleteOptionsByWidgetId($widgetId){
+    public static function DeleteOptionsByWidgetId($widgetId)
+    {
         global $DB;
 
         $strSqlDelete = sprintf("WIDGET_ID='%s'", $widgetId);
@@ -59,7 +84,8 @@ class CWeatherOption
         return true;
     }
 
-    public static function InsertOption($widgetId, $name, $value){
+    public static function InsertOption($widgetId, $name, $value)
+    {
         global $DB;
 
         $strSqlWhere = sprintf(
@@ -72,13 +98,10 @@ class CWeatherOption
 
         $hasResult = self::hasResult($res);
 
-        if ($hasResult)
-        {
-            $strSql = "UPDATE `" . self::DATABASE . "` SET VALUE='" . $value . "' WHERE " .$strSqlWhere;
+        if ($hasResult) {
+            $strSql = "UPDATE `" . self::DATABASE . "` SET VALUE='" . $value . "' WHERE " . $strSqlWhere;
             $DB->Query($strSql);
-        }
-        else
-        {
+        } else {
             $strSqlInsert = sprintf("VALUES('%s', '%s', '%s')", $widgetId, $name, $value);
             $strSql = "INSERT INTO `" . self::DATABASE . "` (WIDGET_ID, NAME, VALUE) " . $strSqlInsert;
             $DB->Query($strSql);
