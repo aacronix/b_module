@@ -17,6 +17,5 @@ CREATE TABLE IF NOT EXISTS b_weather_widget_option
 	PRIMARY KEY (ID)
 );
 
-
 INSERT INTO b_weather_widget(WIDGET_ID, NAME, SUPER) VALUES ('w_0', 'Default', TRUE);
 INSERT INTO b_weather_widget_option(WIDGET_ID, NAME) VALUES ('w_0', 'weather_provider');

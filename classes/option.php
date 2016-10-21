@@ -10,6 +10,19 @@ class CWeatherOption
     {
     }
 
+    public static function InsertOrUpdateOptionsList($optionsArray)
+    {
+        global $DB;
+
+        foreach ($optionsArray as $key => $value){
+            foreach ($value as $pKey => $pValue){
+                self::InsertOption($key, $pKey, $pValue);
+            }
+        }
+
+        return true;
+    }
+
     public static function InsertOptionsList($optionsArray, $widgetId)
     {
         global $DB;
