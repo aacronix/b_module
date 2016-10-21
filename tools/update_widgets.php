@@ -31,6 +31,10 @@ if (isset($_REQUEST["widgets"])) {
 
     main\CWeatherOption::InsertOrUpdateOptionsList($retrievedInformation);
 
+    foreach ($widgets as $wKey => $wValue) {
+        main\CWeatherWidget::RenameWidget($wValue["widget"]["widget_id"], $wValue["widget"]["name"]);
+    }
+
     echo true;
 } else {
     echo 'missed parameters';

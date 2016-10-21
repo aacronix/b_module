@@ -34,6 +34,16 @@ class CWeatherWidget
         return $newName;
     }
 
+    public static function UpdateWidget($widgetId)
+    {
+//        global $DB;
+//        $strSql = "UPDATE `" . self::DATABASE . "` SET NAME='$newName' WHERE WIDGET_ID='$widgetId'";
+//
+//        $res = $DB->Query($strSql, false, "FILE: " . __FILE__ . "<br> LINE: " . __LINE__);
+//
+//        return $newName;
+    }
+
     public static function InsertNewWidget($name)
     {
         global $DB;
