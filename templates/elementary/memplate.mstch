@@ -19,7 +19,7 @@
 </style>
 
 <div id='widget-wrapper-{{widgetId}}'>
-    <div class='b-widget elementary clearfix' title='{{title}}. Ветер {{windDirectionMessage}}'>
+    <div class='b-widget elementary clearfix' title='{{widgetTitle}}. Ветер {{windDirectionMessage}}'>
         <div class='weather-row clearfix'>
             <div class='weather-cell condition'>
                 <i class='weather-condition wi {{icon}} main-font'></i>

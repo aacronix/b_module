@@ -97,4 +97,46 @@ function writeLog($content, $from)
     file_put_contents($file, $current);
 }
 
+function getTemplate($name)
+{
+    global $APPLICATION;
+
+    $data = array('template_name' => $name);
+    $query_url = WEATHER_TOOLS . '/get_page_template.php' . '/?' . http_build_query($data);
+
+    $out = "-1";
+    if ($curl = curl_init()) {
+        curl_setopt($curl, CURLOPT_URL, $query_url);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
+        $out = curl_exec($curl);
+        writeLog(curl_error($curl), 'curl errors ');
+        curl_close($curl);
+    }
+
+    return $out;
+}
+
+function updateTemplateName($widgetId, $name)
+{
+    global $APPLICATION;
+
+    $data = array('WIDGET_ID' => $widgetId, 'TEMPLATE_NAME' => $name);
+    $query_url = WEATHER_TOOLS . '/update_template_name.php' . '/?' . http_build_query($data);
+
+    $out = "-1";
+    if ($curl = curl_init()) {
+        curl_setopt($curl, CURLOPT_URL, $query_url);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
+        $out = curl_exec($curl);
+        writeLog(curl_error($curl), 'curl errors ');
+        curl_close($curl);
+    }
+
+    return $out;
+}
+
 //TODO: добавить функцию по выбору единиц измерения по стране, сейчас это реализовано так, что в каждом провайдере делается отдельная выборка

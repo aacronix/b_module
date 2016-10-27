@@ -1,18 +1,16 @@
 <?
 if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
+require_once($_SERVER['DOCUMENT_ROOT'] . "/bitrix/modules/weather_service/defines.php");
+require_once FUNCTIONS_ROOT . '/functions.php';
+use TL\weather\weather_functions as WF;
 
 $arResult = array();
 if ($this->StartResultCache())
 {
-    $arResult['FROM_CURRENT_POSITION'] = $arParams['FROM_CURRENT_POSITION'];
-    $arResult['LATITUDE'] = $arParams['LATITUDE'];
-    $arResult['LONGITUDE'] = $arParams['LONGITUDE'];
-    $arResult['WIDGET'] = $arParams['WIDGET'];
+    $widgetId = $arParams['WIDGET'];
+    $templateName = $arParams['COMPONENT_TEMPLATE'];
 
-    $arResult['ELEMENT_COLOR'] = $arParams['ELEMENT_COLOR'];
-    $arResult['CONDITION_COLOR'] = $arParams['CONDITION_COLOR'];
-    $arResult['TEMP_COLOR'] = $arParams['TEMP_COLOR'];
-
+    WF\updateTemplateName($widgetId, $templateName);
 
     $this->IncludeComponentTemplate();
 }

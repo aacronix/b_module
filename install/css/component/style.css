@@ -152,11 +152,11 @@
 }
 
 .astronaut.b-widget {
-    font-family: 'Rubik', cursive;
-    font-size: 14px;
-    text-align: center;
-    position: relative;
-    width: 240px;
+    font-family: 'Rubik', cursive !important;
+    font-size: 14px !important;
+    text-align: center !important;
+    position: relative !important;
+    width: 240px !important;
 }
 
 .astronaut.b-widget .weather-cell{
@@ -166,7 +166,7 @@
 .astronaut.b-widget .weather-cell .weather-condition{
     height: 50px;
     line-height: 50px;
-    font-size: 2rem;
+    font-size: 2em;
 }
 
 .astronaut.b-widget .condition {
@@ -175,7 +175,7 @@
 }
 
 .astronaut.b-widget .temperature {
-    font-size: 1.5rem;
+    font-size: 1.5em;
     margin-top: 10px;
 }
 
@@ -189,13 +189,15 @@
     padding: 5px;
     margin: 10px;
 }
-.astronaut .text {
+.astronaut .desc-text {
     line-height: 20px;
     width: 75%;
     float: right;
+    font-size: 1em;
+    font-weight:bold;
 }
 
-.astronaut .text .text-line {
+.astronaut .desc-text .text-line {
     padding: 0 !important;
     margin: 0 !important;
     text-align: left !important;
@@ -245,9 +247,6 @@
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;
     border-radius: 50px;
-    -webkit-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.75);
 }
 
 .circle .weather-row{
@@ -256,9 +255,13 @@
 
 .circle .condition{
     text-align: center;
-    padding-top: 15px;
-    height: 55px;
+    margin-top: 15px;
     font-size: 3em;
+    height: 50px;
+}
+
+.circle .condition .weather-condition{
+    vertical-align: top;
 }
 
 .circle .temp{
@@ -271,32 +274,38 @@
     margin: 10px;
     height: 50px;
     font-family: 'Rubik', cursive;
+    font-size: 14px;
 }
 
 .elementary .condition{
     float: left;
     width: 50px;
     text-align: center;
-    padding: 0 5px;
+    padding: 0 15px 0 5px;
 }
 
-.elementary .text{
+.elementary .desc-text{
     float: left;
     text-align: left;
     padding: 0 5px 0 0;
 }
 
-.elementary .text p{
+.elementary .desc-text p{
     margin: 0 !important;
     padding: 0 !important;
     line-height: 25px;
     height: 50%;
+    font-size: 1.5em;
 }
 
 .elementary.b-widget .weather-cell .weather-condition{
     height: 50px;
     line-height: 50px;
-    font-size: 1.5rem;
+    font-size: 2.5em;
+}
+
+.elementary.b-widget .weather-cell .temp{
+    font-size: 1.5em;
 }
 
 .error-block{

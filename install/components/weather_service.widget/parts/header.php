@@ -3,6 +3,11 @@
 use TL\weather\weather_functions as WF;
 use TL\weather\main;
 
+require_once($_SERVER['DOCUMENT_ROOT'] . "/bitrix/modules/weather_service/php_common/Mustache/Autoloader.php");
+Mustache_Autoloader::register();
+
+$m = new Mustache_Engine;
+
 const SERVICE_UNAVAILABLE = 'SERVICE_UNAVAILABLE';
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/bitrix/modules/weather_service/defines.php");
@@ -29,8 +34,17 @@ $APPLICATION->SetAdditionalCSS("/bitrix/css/weather_service/weather-icons/weathe
 $APPLICATION->SetAdditionalCSS("/bitrix/css/weather_service/weather-icons/weather-icons-wind.min.css");
 
 $optionListResponse = main\CWeatherOption::GetOptionList($widgetId);
+
 $widget = $optionListResponse[0];
-$activeProvider = $widget->getActiveProviderRef();
+$weatherProvider = $widget->getWeatherProvider();
+$activeProvider = null;
+
+foreach ($widget->getProvidersList() as $key => $value){
+    if ($value->getActivity() == $weatherProvider){
+        $activeProvider = $value;
+        break;
+    }
+}
 
 $obCache = new CPHPCache();
 $lifeTime = 60 * $widget->getUpdateInterval();
@@ -38,11 +52,11 @@ $cacheID = md5(serialize($widgetId . $sModuleId));
 $cacheDir = "/" . $cacheID;
 $from = 'server';
 
-//// если есть кеш и он ещё акутален и если сервис доступен был ранее
-//if ($obCache->InitCache($lifeTime, $cacheID, $cacheDir)/* && $parameters[$providerAvailabilitySelector] == 'Y'*/) {
-//    $weather = $obCache->GetVars();
-//    $from = 'cache';
-//} else { // иначе получаем новые данные
+// если есть кеш и он ещё акутален и если сервис доступен был ранее
+if ($obCache->InitCache($lifeTime, $cacheID, $cacheDir)/* && $parameters[$providerAvailabilitySelector] == 'Y'*/) {
+    $weather = $obCache->GetVars();
+    $from = 'cache';
+} else { // иначе получаем новые данные
 
     $weather = json_decode(WF\getWeather($activeProvider->getName(),
         $activeProvider->getApiKey(),
@@ -50,21 +64,20 @@ $from = 'server';
         $widget->getLatitude(),
         $widget->getLongitude(), 'metrical'),
         true);
-
 //    if($weather["code"] && $weather["code"] == SERVICE_UNAVAILABLE){
 //        main\CWeatherOption::InsertOption($widgetId, "$providerAvailabilitySelector", 'N');
 //    } else {
 //        main\CWeatherOption::InsertOption($widgetId, "$providerAvailabilitySelector", 'Y');
 //    }
-//}
-//
-//if ($obCache->StartDataCache()/*  && $parameters[$providerAvailabilitySelector] == 'Y'*/): // тагируем кеш
-//    $CACHE_MANAGER->StartTagCache($cacheDir);
-//    $CACHE_MANAGER->RegisterTag($cacheDir);
-//    $CACHE_MANAGER->EndTagCache();
-//
-//    $obCache->EndDataCache($weather);
-//endif;
+}
+
+if ($obCache->StartDataCache()/*  && $parameters[$providerAvailabilitySelector] == 'Y'*/): // тагируем кеш
+    $CACHE_MANAGER->StartTagCache($cacheDir);
+    $CACHE_MANAGER->RegisterTag($cacheDir);
+    $CACHE_MANAGER->EndTagCache();
+
+    $obCache->EndDataCache($weather);
+endif;
 
 $icon = $weather["icon"];
 
@@ -82,13 +95,9 @@ if ($measurementSystem == 'britain'){
     $windSpeedUnit = 'mph';
 }
 
+$providerName = $activeProvider->getName();
 $windDegree = $weather["wind"]["windDegree"];
 $windDegreeInt = WF\roundToInt($windDegree);
 
 $windDirectionMessage = GetMessage(WF\getWindDirection($windDegree));
 
-if ($widget->getProviderInfo() == 'Y') {
-    $providerInfo = '<p class=\'by-provider\'>get from ' . $from . '. provided by ' . $activeProvider->getName() . '</p>';
-} else {
-    $providerInfo = '';
-}

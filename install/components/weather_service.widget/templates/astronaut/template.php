@@ -2,10 +2,19 @@
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true)
     die();
 require_once($_SERVER['DOCUMENT_ROOT'] . "/bitrix/modules/weather_service/defines.php");
+use TL\weather\weather_functions as WF;
 
 require HEADER;
 
-if ($icon == null || $temp == null) {
+$content = WF\getTemplate('astronaut');
+$template = json_decode($content)->content;
+
+$backgroundColor = $widget->getBackgroundColor();
+$majorTextColor = $widget->getMajorTextColor();
+$extraTextColor = $widget->getExtraTextColor();
+$borderColor = $widget->getBorderColor();
+
+if ($icon === null || $temp === null) {
     global $USER;
     if ($USER->IsAdmin()) {
         require ERROR_PAGE_ADMIN;
@@ -13,42 +22,20 @@ if ($icon == null || $temp == null) {
         require ERROR_PAGE_USER;
     }
 } else {
-    echo "
-<style>
-#widget-wrapper-$widgetId{
-    float: left;
-    clear: both;
-}
+    echo "{$m->render($template, array('widgetTitle' => $widget->getTitle(), 
+    'widgetId' => $widgetId,
+    'backgroundColor' => $backgroundColor,
+    'majorTextColor' => $majorTextColor,
+    'extraTextColor' => $extraTextColor,
+    'windDirectionMessage' => $windDirectionMessage, 
+    'title' => $widget->getTitle(), 
+    'temp' => $temp, 
+    'tempUnit' => $tempUnit,
+    'borderColor' => $borderColor,
+    'icon' => $icon,
+    'hasProviderInfo' => ($widget->getProviderInfo() == 'true'),
+    'from' => $from,
+    'providerName' => $providerName))}
 
-#widget-wrapper-$widgetId .b-widget{
-background: {$widget->getBackgroundColor()};
-}
-
-#widget-wrapper-$widgetId .b-widget .condition, #widget-wrapper-$widgetId .b-widget .text, #widget-wrapper-$widgetId .b-widget .temp{
-color: {$widget->getMajorTextColor()};
-}
-
-#widget-wrapper-$widgetId .b-widget .by-provider{
-color: {$widget->getExtraTextColor()};
-}
-</style>
-
-<div id='widget-wrapper-$widgetId'>
-    <div class='b-widget astronaut clearfix' title='$widgetTitle. Ветер $windDirectionMessage'>
-        <div class='weather-row clearfix'>
-            <div class='weather-cell condition'>
-            <i class='weather-condition wi $icon main-font'></i>
-            </div>
-            <span class='v-delimetr'></span>
-            <div class='weather-cell text'>
-                <p class='text-line first-line'>{$widget->getTitle()}</p>
-                <p class='text-line second-line time'></p>
-            </div>
-        </div>
-        <div class='weather-row'>
-            <div class='temp'><span class='sign'>&nbsp;</span>$temp<span class='measure'>&deg;$tempUnit</span></div>
-        </div>
-        $providerInfo
-</div></div>
 ";
 }

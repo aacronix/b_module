@@ -1,12 +1,20 @@
 <?php
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true)
     die();
-
 require_once($_SERVER['DOCUMENT_ROOT'] . "/bitrix/modules/weather_service/defines.php");
+use TL\weather\weather_functions as WF;
 
 require HEADER;
 
-if ($icon == null || $temp == null) {
+$content = WF\getTemplate('circle');
+$template = json_decode($content)->content;
+
+$backgroundColor = $widget->getBackgroundColor();
+$majorTextColor = $widget->getMajorTextColor();
+$extraTextColor = $widget->getExtraTextColor();
+$borderColor = $widget->getBorderColor();
+
+if ($icon === null || $temp === null) {
     global $USER;
     if ($USER->IsAdmin()) {
         require ERROR_PAGE_ADMIN;
@@ -14,36 +22,20 @@ if ($icon == null || $temp == null) {
         require ERROR_PAGE_USER;
     }
 } else {
-    echo "
-<style>
-#widget-wrapper-$widgetId{
-    float: left;
-    clear: both;
-}
+    echo "{$m->render($template, array('widgetTitle' => $widgetTitle, 
+    'widgetId' => $widgetId,
+    'backgroundColor' => $backgroundColor,
+    'majorTextColor' => $majorTextColor,
+    'extraTextColor' => $extraTextColor,
+    'windDirectionMessage' => $windDirectionMessage, 
+    'title' => $widget->getTitle(), 
+    'temp' => $temp, 
+    'tempUnit' => $tempUnit, 
+    'borderColor' => $borderColor,
+    'icon' => $icon,
+    'hasProviderInfo' => ($widget->getProviderInfo() == 'true'),
+    'from' => $from,
+    'providerName' => $providerName))}
 
-#widget-wrapper-$widgetId .b-widget{
-background: $parameters[$backgroundColorKeySelector];
-}
-
-#widget-wrapper-$widgetId .b-widget .condition, #widget-wrapper-$widgetId .b-widget .text, #widget-wrapper-$widgetId .b-widget .temp{
-color: $parameters[$majorTextColorSelector];
-}
-
-#widget-wrapper-$widgetId .b-widget .by-provider{
-color: $parameters[$extraTextColorSelector];
-}
-</style>
-
-<div id='widget-wrapper-$widgetId'>
-    <div class='b-widget circle clearfix' title='$widgetTitle. Ветер $windDirectionMessage'>
-        <div class='weather-row clearfix'>
-            <div class='weather-cell condition'>
-                <i class='weather-condition wi $icon main-font'></i>
-            </div>
-        </div>
-        <div class='weather-row'>
-            <div class='temp'>$temp<span class='measure'>&deg;C</span></div>
-        </div>
-</div></div>
 ";
 }
