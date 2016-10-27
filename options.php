@@ -11,6 +11,9 @@ $APPLICATION->AddHeadScript('/react/public/script/microevent.js');
 $APPLICATION->AddHeadScript('/react/public/script/jquery.js');
 $APPLICATION->AddHeadScript('/react/public/script/deepcopy.min.js');
 
+$APPLICATION->SetAdditionalCSS("/bitrix/css/weather_service/component/style.css");
+$APPLICATION->SetAdditionalCSS("/bitrix/css/weather_service/weather-icons/weather-icons.min.css");
+$APPLICATION->SetAdditionalCSS("/bitrix/css/weather_service/weather-icons/weather-icons-wind.min.css");
 ?>
 <script>
     function getParameterByName(name, url) {
