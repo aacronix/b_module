@@ -25,6 +25,7 @@ define('DEFAULT_WIDGET_TITLE', 'default');
 
 define('DEFAULT_UPDATE_INTERVAL', 120);
 define('DEFAULT_BACKGROUND_COLOR', 'rgba(0, 0, 0, 1)');
+define('DEFAULT_BORDER_COLOR', '#333');
 define('DEFAULT_FONT_COLOR', '#ffffff');
 define('DEFAULT_TAB', "w_0");
 
@@ -40,6 +41,7 @@ define("WEATHERTRIGGER_APP_KEY_SELECTOR", "weathertrigger_app_key");
 define("APIXU_API_KEY_SELECTOR", "apixu_api_key");
 define("OPENWEATHER_API_KEY_SELECTOR", "openweather_api_key");
 define("BACKGROUND_COLOR_SELECTOR", "background_color");
+define("BORDER_COLOR_SELECTOR", "border_color");
 define("MAJOR_TEXT_COLOR_SELECTOR", "major_text_color");
 define("EXTRA_TEXT_COLOR_SELECTOR", "extra_text_color");
 define("UPDATE_INTERVAL_SELECTOR", "update_interval");

@@ -34,14 +34,14 @@ class CWeatherWidget
         return $newName;
     }
 
-    public static function UpdateWidget($widgetId)
+    public static function UpdateWidgetTemplateName($widgetId, $templateName)
     {
-//        global $DB;
-//        $strSql = "UPDATE `" . self::DATABASE . "` SET NAME='$newName' WHERE WIDGET_ID='$widgetId'";
-//
-//        $res = $DB->Query($strSql, false, "FILE: " . __FILE__ . "<br> LINE: " . __LINE__);
-//
-//        return $newName;
+        global $DB;
+        $strSql = "UPDATE `" . self::DATABASE . "` SET TEMPLATE_NAME='$templateName' WHERE WIDGET_ID='$widgetId'";
+
+        $res = $DB->Query($strSql, false, "FILE: " . __FILE__ . "<br> LINE: " . __LINE__);
+
+        return $templateName;
     }
 
     public static function InsertNewWidget($name)
@@ -84,7 +84,7 @@ class CWeatherWidget
         $widget = NULL;
 
         while ($option = $res->Fetch()) {
-            $widget = new \CWidget($widgetId, $option["ACTIVE"], $option["NAME"], $option["SUPER"]);
+            $widget = new \CWidget($widgetId, $option["ACTIVE"], $option["NAME"], $option["SUPER"], ($option["TEMPLATE_NAME"] == '' ? 'elementary' : $option["TEMPLATE_NAME"]));
         }
 
         return $widget;

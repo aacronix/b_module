@@ -5,7 +5,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/bitrix/modules/weather_service/define
 
 CModule::IncludeModule(WEATHER_SERVICE_MODULE_ID);
 
-$APPLICATION->SetAdditionalCSS("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
 $APPLICATION->SetAdditionalCSS("/react/public/css/style.css");
 $APPLICATION->AddHeadScript('/react/public/script/microevent.js');
 $APPLICATION->AddHeadScript('/react/public/script/jquery.js');

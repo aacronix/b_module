@@ -6,9 +6,10 @@
 
     #widget-wrapper-{{widgetId}} .b-widget {
         background: {{backgroundColor}};
+        border: 1px solid {{borderColor}};
     }
 
-    #widget-wrapper-{{widgetId}} .b-widget .condition, #widget-wrapper-{{widgetId}} .b-widget .text, #widget-wrapper-{{widgetId}} .b-widget .temp {
+    #widget-wrapper-{{widgetId}} .b-widget .condition, #widget-wrapper-{{widgetId}} .b-widget .desc-text, #widget-wrapper-{{widgetId}} .b-widget .temp {
         color: {{majorTextColor}};
     }
 

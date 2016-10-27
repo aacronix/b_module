@@ -15,6 +15,7 @@ class CWidgetOptions
     private $_apixu_api_key;
     private $_openweather_api_key;
     private $_background_color;
+    private $_border_color;
     private $_major_text_color;
     private $_extra_text_color;
     private $_update_interval;
@@ -32,6 +33,7 @@ class CWidgetOptions
                 'weather_provider' => $this->_weather_provider,
                 'widget_title' => $this->_title,
                 'background_color' => $this->_background_color,
+                'border_color' => $this->_border_color,
                 'major_text_color' => $this->_major_text_color,
                 'extra_text_color' => $this->_extra_text_color,
                 'update_interval' => $this->_update_interval,
@@ -48,6 +50,7 @@ class CWidgetOptions
         $extraTextColor = $properties[EXTRA_TEXT_COLOR_SELECTOR] != '' ? $properties[EXTRA_TEXT_COLOR_SELECTOR] : DEFAULT_FONT_COLOR;
         $majorTextColor = $properties[MAJOR_TEXT_COLOR_SELECTOR] != '' ? $properties[MAJOR_TEXT_COLOR_SELECTOR] : DEFAULT_FONT_COLOR;
         $backgroundColor = $properties[BACKGROUND_COLOR_SELECTOR] != '' ? $properties[BACKGROUND_COLOR_SELECTOR] : DEFAULT_BACKGROUND_COLOR;
+        $borderColor = $properties[BORDER_COLOR_SELECTOR] != '' ? $properties[BORDER_COLOR_SELECTOR] : DEFAULT_BORDER_COLOR;
         $weatherProvider = $properties[WEATHER_PROVIDER_SELECTOR] != '' ? $properties[WEATHER_PROVIDER_SELECTOR] : DEFAULT_PROVIDER;
         $measurementSystem = $properties[MEASUREMENT_SYSTEM_SELECTOR] != '' ? $properties[MEASUREMENT_SYSTEM_SELECTOR] : DEFAULT_MEASUREMENT_SYSTEM;
         $showProviderInfo = $properties[SHOW_PROVIDER_INFO_SELECTOR] != '' ? $properties[SHOW_PROVIDER_INFO_SELECTOR] : DEFAULT_SHOW_PROVIDER_INFO;
@@ -65,6 +68,7 @@ class CWidgetOptions
         $this->_apixu_api_key = $properties[APIXU_API_KEY_SELECTOR] == null ? '' : $properties[APIXU_API_KEY_SELECTOR];
         $this->_openweather_api_key = $properties[OPENWEATHER_API_KEY_SELECTOR] == null ? '' : $properties[OPENWEATHER_API_KEY_SELECTOR];
         $this->_background_color = $backgroundColor;
+        $this->_border_color = $borderColor;
         $this->_major_text_color = $majorTextColor;
         $this->_extra_text_color = $extraTextColor;
         $this->_update_interval = $updateInterval;
@@ -199,6 +203,16 @@ class CWidgetOptions
         $this->_background_color = $backgroundColor;
     }
 
+    public function getBorderColor()
+    {
+        return $this->_border_color;
+    }
+
+    public function setBorderColor($borderColor)
+    {
+        $this->_border_color = $borderColor;
+    }
+
     public function getMajorTextColor()
     {
         return $this->_major_text_color;
@@ -278,10 +292,5 @@ class CWidgetOptions
         }
 
         return $providersList;
-    }
-
-    public function getActiveProviderRef()
-    {
-        return $this->_active_provider_ref;
     }
 }
