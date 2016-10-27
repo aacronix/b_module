@@ -20,10 +20,10 @@ if (isset($_REQUEST["widgets"])) {
             $retrievedInformation[$widgetId][$oKey] = $oValue;
         }
         foreach ($wValue["options"]["providers_list"] as $oKey => $oValue) {
-            if (strlen($oValue["api_key"]) > 0) {
-                $retrievedInformation[$widgetId][$oValue["name"] . '_api_key'] = $oValue["api_key"];
-            }
-            if (strlen($oValue['app_key']) > 0) {
+            $retrievedInformation[$widgetId][$oValue["name"] . '_api_key'] = $oValue["api_key"];
+
+            // TODO: *бучий велосипед
+            if ($oValue["name"] == WEATHERTRIGGER) {
                 $retrievedInformation[$widgetId][$oValue["name"] . '_app_key'] = $oValue["app_key"];
             }
         }

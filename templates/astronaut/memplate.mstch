@@ -1,0 +1,34 @@
+<style>
+    #widget-wrapper-{{widgetId}}{
+        float: left;
+        clear: both;
+    }
+
+    #widget-wrapper-{{widgetId}} .b-widget {
+        background: {{backgroundColor}};
+    }
+
+    #widget-wrapper-{{widgetId}} .b-widget .condition, #widget-wrapper-{{widgetId}} .b-widget .text, #widget-wrapper-{{widgetId}} .b-widget .temp {
+        color: {{majorTextColor}};
+    }
+
+    #widget-wrapper-{{widgetId}} .b-widget .by-provider {
+        color: {{extraTextColor}};
+    }
+</style>
+<div id='widget-wrapper-{{widgetId}}'>
+    <div class='b-widget astronaut clearfix' title='{{widgetTitle}}. Ветер {{windDirectionMessage}}'>
+        <div class='weather-row clearfix'>
+            <div class='weather-cell condition'><i class='weather-condition wi {{icon}} main-font'></i></div>
+            <span class='v-delimetr'></span>
+            <div class='weather-cell desc-text'><p class='text-line first-line'>{{widgetTitle}}</p>
+                <p class='text-line second-line time'>{{time}}</p></div>
+        </div>
+        <div class='weather-row'>
+            <div class='temp'><span class='sign'></span>{{temp}}<span class='measure'>&deg;{{tempUnit}}</span></div>
+        </div>
+        {{# hasProviderInfo }}
+            <p class='by-provider'>get from {{from}}. provided by {{providerName}}</p>
+        {{/ hasProviderInfo }}
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<style>
+    #widget-wrapper-{{widgetId}}{
+        float: left;
+        clear: both;
+    }
+
+    #widget-wrapper-{{widgetId}} .b-widget {
+        background: {{backgroundColor}};
+    }
+
+    #widget-wrapper-{{widgetId}} .b-widget .condition, #widget-wrapper-{{widgetId}} .b-widget .text, #widget-wrapper-{{widgetId}} .b-widget .temp {
+        color: {{majorTextColor}};
+    }
+
+    #widget-wrapper-{{widgetId}} .b-widget .by-provider {
+        color: {{extraTextColor}};
+    }
+</style>
+
+<div id='widget-wrapper-{{widgetId}}'>
+    <div class='b-widget circle' title='{{title}}. Ветер {{windDirectionMessage}}'>
+        <div class='weather-row'>
+            <div class='weather-cell condition'>
+                <i class='weather-condition wi {{icon}} main-font'></i>
+            </div>
+        </div>
+        <div class='weather-row'>
+            <div class='temp'>{{temp}}<span class='measure'>&deg;C</span></div>
+        </div>
+    </div>
+</div>

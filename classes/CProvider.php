@@ -50,6 +50,7 @@ class CProvider{
           'api_key' => $this->_api_key,
           'app_key' => $this->_app_key,
           'activity' => $this->_activity,
+          'valid' => true,
         ];
     }
 }
