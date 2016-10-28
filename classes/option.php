@@ -14,8 +14,8 @@ class CWeatherOption
     {
         global $DB;
 
-        foreach ($optionsArray as $key => $value){
-            foreach ($value as $pKey => $pValue){
+        foreach ($optionsArray as $key => $value) {
+            foreach ($value as $pKey => $pValue) {
                 self::InsertOption($key, $pKey, $pValue);
             }
         }
@@ -42,10 +42,19 @@ class CWeatherOption
                 $insertStr .= ", ";
             }
         }
+        $DB->StartTransaction();
 
         $res = $DB->Query($insertStr, true);
 
-        return true;
+        $out = true;
+        if ($res) {
+            $DB->Commit();
+        } else {
+            $DB->Rollback();
+            $out = false;
+        }
+
+        return $out;
     }
 
     public static function GetOptionList($id = false)
@@ -92,9 +101,18 @@ class CWeatherOption
 
         $strSql = "DELETE FROM `" . self::DATABASE . "` WHERE " . $strSqlDelete;
 
-        $res = $DB->Query($strSql, true);
+        $DB->StartTransaction();
+        $result = $DB->Query($strSql, false);
+        $response = true;
 
-        return true;
+        if ($result) {
+            $DB->Commit();
+        } else {
+            $response = false;
+            $DB->Rollback();
+        }
+
+        return $result;
     }
 
     public static function InsertOption($widgetId, $name, $value)

@@ -11,17 +11,30 @@ class CWeatherWidget
     {
     }
 
-    public static function DeleteWidgetByWidgetId($widgetId)
+    public static function DeleteWidgetById($widgetId)
     {
         global $DB;
 
         $strSql = "DELETE FROM `" . self::DATABASE . "` WHERE WIDGET_ID='$widgetId'";
 
-        $res = $DB->Query($strSql, false, "FILE: " . __FILE__ . "<br> LINE: " . __LINE__);
+        $DB->StartTransaction();
+        $result = $DB->Query($strSql, true);
+        $response = true;
 
-        CWeatherOption::DeleteOptionsByWidgetId($widgetId);
+        if ($result){
+            $result = CWeatherOption::DeleteOptionsByWidgetId($widgetId);
 
-        return $res;
+            if (!$result){
+                $response = false;
+                $DB->Rollback();
+            }
+            $DB->Commit();
+        } else {
+            $response = false;
+            $DB->Rollback();
+        }
+
+        return $response;
     }
 
     public static function RenameWidget($widgetId, $newName)
