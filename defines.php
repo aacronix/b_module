@@ -5,6 +5,7 @@ define('FUNCTIONS_ROOT', $_SERVER['DOCUMENT_ROOT'] . "/bitrix/components/weather
 define('ERROR_PAGE_USER', $_SERVER['DOCUMENT_ROOT'] . "/bitrix/components/weather_service/weather_service.widget/parts/error-user.php");
 define('ERROR_PAGE_ADMIN', $_SERVER['DOCUMENT_ROOT'] . "/bitrix/components/weather_service/weather_service.widget/parts/error-admin.php");
 define('HEADER', $_SERVER['DOCUMENT_ROOT'] . "/bitrix/components/weather_service/weather_service.widget/parts/header.php");
+define('FOOTER', $_SERVER['DOCUMENT_ROOT'] . "/bitrix/components/weather_service/weather_service.widget/parts/footer.php");
 define('CLASSES_ROOT', $_SERVER['DOCUMENT_ROOT'] . "/bitrix/components/weather_service/weather_service.widget/classes");
 define('DEFAULT_WEATHER_PROVIDER', 'yahooweather');
 define('WEATHER_TOOLS_RELATIVE', "/bitrix/tools/" . WEATHER_SERVICE_MODULE_ID);
@@ -22,6 +23,7 @@ define('DEFAULT_PROVIDER', YAHOOWEATHER);
 define('DEFAULT_MEASUREMENT_SYSTEM', 'metrical');
 define('DEFAULT_SHOW_PROVIDER_INFO', false);
 define('DEFAULT_WIDGET_TITLE', 'default');
+define('DEFAULT_TEXT_SIZE', 14);
 
 define('DEFAULT_UPDATE_INTERVAL', 120);
 define('DEFAULT_BACKGROUND_COLOR', 'rgba(0, 0, 0, 1)');
@@ -43,7 +45,12 @@ define("OPENWEATHER_API_KEY_SELECTOR", "openweather_api_key");
 define("BACKGROUND_COLOR_SELECTOR", "background_color");
 define("BORDER_COLOR_SELECTOR", "border_color");
 define("MAJOR_TEXT_COLOR_SELECTOR", "major_text_color");
+define("MAJOR_TEXT_SIZE_SELECTOR", "major_text_size");
 define("EXTRA_TEXT_COLOR_SELECTOR", "extra_text_color");
+define("EXTRA_TEXT_SIZE_SELECTOR", "extra_text_size");
+define("TEMPERATURE_TEXT_SIZE_SELECTOR", "temperature_text_size");
+define("TEMPERATURE_ICON_SIZE_SELECTOR", "temperature_icon_size");
+define("WEATHER_ICON_SIZE_SELECTOR", "weather_icon_size");
 define("UPDATE_INTERVAL_SELECTOR", "update_interval");
 define("SHOW_PROVIDER_INFO_SELECTOR", "show_provider_info");
 define("MEASUREMENT_SYSTEM_SELECTOR", "measurement_system");

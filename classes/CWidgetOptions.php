@@ -18,6 +18,11 @@ class CWidgetOptions
     private $_border_color;
     private $_major_text_color;
     private $_extra_text_color;
+    private $_major_text_size;
+    private $_extra_text_size;
+    private $_temperature_text_size;
+    private $_temperature_icon_size;
+    private $_weather_icon_size;
     private $_update_interval;
     private $_provider_info;
     private $_measurement_system;
@@ -35,7 +40,12 @@ class CWidgetOptions
                 'background_color' => $this->_background_color,
                 'border_color' => $this->_border_color,
                 'major_text_color' => $this->_major_text_color,
+                'major_text_size' => $this->_major_text_size,
                 'extra_text_color' => $this->_extra_text_color,
+                'extra_text_size' => $this->_extra_text_size,
+                'temperature_text_size' => $this->_temperature_text_size,
+                'temperature_icon_size' => $this->_temperature_icon_size,
+                'weather_icon_size' => $this->_weather_icon_size,
                 'update_interval' => $this->_update_interval,
                 'show_provider_info' => $this->_provider_info,
                 'measurement_system' => $this->_measurement_system,
@@ -48,7 +58,12 @@ class CWidgetOptions
     {
         $updateInterval = $properties[UPDATE_INTERVAL_SELECTOR] != '' ? $properties[UPDATE_INTERVAL_SELECTOR] : DEFAULT_UPDATE_INTERVAL;
         $extraTextColor = $properties[EXTRA_TEXT_COLOR_SELECTOR] != '' ? $properties[EXTRA_TEXT_COLOR_SELECTOR] : DEFAULT_FONT_COLOR;
+        $extraTextSize = $properties[EXTRA_TEXT_SIZE_SELECTOR] != '' ? $properties[EXTRA_TEXT_SIZE_SELECTOR] : DEFAULT_TEXT_SIZE;
+        $temperatureTextSize = $properties[TEMPERATURE_TEXT_SIZE_SELECTOR] != '' ? $properties[TEMPERATURE_TEXT_SIZE_SELECTOR] : DEFAULT_TEXT_SIZE;
+        $temperatureIconSize = $properties[TEMPERATURE_ICON_SIZE_SELECTOR] != '' ? $properties[TEMPERATURE_ICON_SIZE_SELECTOR] : DEFAULT_TEXT_SIZE;
+        $weatherIconSize = $properties[WEATHER_ICON_SIZE_SELECTOR] != '' ? $properties[WEATHER_ICON_SIZE_SELECTOR] : DEFAULT_TEXT_SIZE;
         $majorTextColor = $properties[MAJOR_TEXT_COLOR_SELECTOR] != '' ? $properties[MAJOR_TEXT_COLOR_SELECTOR] : DEFAULT_FONT_COLOR;
+        $majorTextSize = $properties[MAJOR_TEXT_SIZE_SELECTOR] != '' ? $properties[MAJOR_TEXT_SIZE_SELECTOR] : DEFAULT_TEXT_SIZE;
         $backgroundColor = $properties[BACKGROUND_COLOR_SELECTOR] != '' ? $properties[BACKGROUND_COLOR_SELECTOR] : DEFAULT_BACKGROUND_COLOR;
         $borderColor = $properties[BORDER_COLOR_SELECTOR] != '' ? $properties[BORDER_COLOR_SELECTOR] : DEFAULT_BORDER_COLOR;
         $weatherProvider = $properties[WEATHER_PROVIDER_SELECTOR] != '' ? $properties[WEATHER_PROVIDER_SELECTOR] : DEFAULT_PROVIDER;
@@ -70,7 +85,12 @@ class CWidgetOptions
         $this->_background_color = $backgroundColor;
         $this->_border_color = $borderColor;
         $this->_major_text_color = $majorTextColor;
+        $this->_major_text_size = $majorTextSize;
         $this->_extra_text_color = $extraTextColor;
+        $this->_extra_text_size = $extraTextSize;
+        $this->_temperature_text_size = $temperatureTextSize;
+        $this->_temperature_icon_size = $temperatureIconSize;
+        $this->_weather_icon_size = $weatherIconSize;
         $this->_update_interval = $updateInterval;
         $this->_provider_info = $showProviderInfo;
         $this->_measurement_system = $measurementSystem;
@@ -223,6 +243,16 @@ class CWidgetOptions
         $this->_major_text_color = $majorTextColor;
     }
 
+    public function getMajorTextSize()
+    {
+        return $this->_major_text_size;
+    }
+
+    public function setMajorTextSize($majorTextSize)
+    {
+        $this->_major_text_size = $majorTextSize;
+    }
+
     public function getExtraTextColor()
     {
         return $this->_extra_text_color;
@@ -231,6 +261,46 @@ class CWidgetOptions
     public function setExtraTextColor($extraTextColor)
     {
         $this->_extra_text_color = $extraTextColor;
+    }
+
+    public function getExtraTextSize()
+    {
+        return $this->_extra_text_size;
+    }
+
+    public function setExtraTextSize($extraTextSize)
+    {
+        $this->_extra_text_size = $extraTextSize;
+    }
+
+    public function getTemperatureTextSize()
+    {
+        return $this->_temperature_text_size;
+    }
+
+    public function setTemperatureTextSize($temperatureTextSize)
+    {
+        $this->_temperature_text_size = $temperatureTextSize;
+    }
+
+    public function getTemperatureIconSize()
+    {
+        return $this->_temperature_icon_size;
+    }
+
+    public function setTemperatureIconSize($temperatureIconSize)
+    {
+        $this->_temperature_icon_size = $temperatureIconSize;
+    }
+
+    public function getWeatherIconSize()
+    {
+        return $this->_weather_icon_size;
+    }
+
+    public function setWeatherIconSize($weatherIconSize)
+    {
+        $this->_weather_icon_size = $weatherIconSize;
     }
 
     public function getUpdateInterval()

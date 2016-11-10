@@ -9,12 +9,29 @@
         border: 1px solid {{borderColor}};
     }
 
-    #widget-wrapper-{{widgetId}} .b-widget .condition, #widget-wrapper-{{widgetId}} .b-widget .desc-text, #widget-wrapper-{{widgetId}} .b-widget .temp {
+    #widget-wrapper-{{widgetId}} .b-widget .extra-text {
+        color: {{extraTextColor}};
+        font-size: {{extraTextSize}}px;
+    }
+
+    #widget-wrapper-{{widgetId}} .b-widget .weather-icon {
+        font-size: {{weatherIconSize}}px;
         color: {{majorTextColor}};
     }
 
-    #widget-wrapper-{{widgetId}} .b-widget .by-provider {
-        color: {{extraTextColor}};
+    #widget-wrapper-{{widgetId}} .b-widget .major-text {
+        font-size: {{majorTextSize}}px;
+        color: {{majorTextColor}};
+    }
+
+    #widget-wrapper-{{widgetId}} .b-widget .temperature-text {
+        color: {{majorTextColor}};
+        font-size: {{temperatureTextSize}}px;
+    }
+
+    #widget-wrapper-{{widgetId}} .b-widget .temperature-icon {
+        color: {{majorTextColor}};
+        font-size: {{temperatureIconSize}}px;
     }
 </style>
 
@@ -22,11 +39,11 @@
     <div class='b-widget circle' title='{{title}}. Ветер {{windDirectionMessage}}'>
         <div class='weather-row'>
             <div class='weather-cell condition'>
-                <i class='weather-condition wi {{icon}} main-font'></i>
+                <i class='weather-condition wi {{icon}} main-font weather-icon'></i>
             </div>
         </div>
         <div class='weather-row'>
-            <div class='temp'>{{temp}}<span class='measure'>&deg;C</span></div>
+            <div class='temp temperature-text'>{{temp}}<span class='measure temperature-icon'>&deg;{{tempUnit}}</span></div>
         </div>
     </div>
 </div>

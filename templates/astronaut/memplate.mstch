@@ -9,27 +9,44 @@
         border: 1px solid {{borderColor}};
     }
 
-    #widget-wrapper-{{widgetId}} .b-widget .condition, #widget-wrapper-{{widgetId}} .b-widget .desc-text, #widget-wrapper-{{widgetId}} .b-widget .temp {
+    #widget-wrapper-{{widgetId}} .b-widget .extra-text {
+        color: {{extraTextColor}};
+        font-size: {{extraTextSize}}px;
+    }
+
+    #widget-wrapper-{{widgetId}} .b-widget .weather-icon {
+        font-size: {{weatherIconSize}}px;
         color: {{majorTextColor}};
     }
 
-    #widget-wrapper-{{widgetId}} .b-widget .by-provider {
-        color: {{extraTextColor}};
+    #widget-wrapper-{{widgetId}} .b-widget .major-text {
+        font-size: {{majorTextSize}}px;
+        color: {{majorTextColor}};
+    }
+
+    #widget-wrapper-{{widgetId}} .b-widget .temperature-text {
+        color: {{majorTextColor}};
+        font-size: {{temperatureTextSize}}px;
+    }
+
+    #widget-wrapper-{{widgetId}} .b-widget .temperature-icon {
+        color: {{majorTextColor}};
+        font-size: {{temperatureIconSize}}px;
     }
 </style>
 <div id='widget-wrapper-{{widgetId}}'>
     <div class='b-widget astronaut clearfix' title='{{widgetTitle}}. Ветер {{windDirectionMessage}}'>
         <div class='weather-row clearfix'>
-            <div class='weather-cell condition'><i class='weather-condition wi {{icon}} main-font'></i></div>
+            <div class='weather-cell condition'><i class='weather-condition wi {{icon}} weather-icon'></i></div>
             <span class='v-delimetr'></span>
-            <div class='weather-cell desc-text'><p class='text-line first-line'>{{widgetTitle}}</p>
-                <p class='text-line second-line time'>{{time}}</p></div>
+            <div class='weather-cell desc-text major-text'><p class='text-line first-line'>{{widgetTitle}}</p>
+                <p class='text-line second-line time major-text'>{{time}}</p></div>
         </div>
         <div class='weather-row'>
-            <div class='temp'><span class='sign'></span>{{temp}}<span class='measure'>&deg;{{tempUnit}}</span></div>
+            <div class='temp temperature-text'><span class='sign'></span>{{temp}}<span class='measure temperature-icon'>&deg;{{tempUnit}}</span></div>
         </div>
         {{# hasProviderInfo }}
-            <p class='by-provider'>get from {{from}}. provided by {{providerName}}</p>
+            <p class='by-provider extra-text'>get from {{from}}. provided by {{providerName}}</p>
         {{/ hasProviderInfo }}
     </div>
 </div>
