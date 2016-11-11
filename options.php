@@ -7,6 +7,7 @@ CModule::IncludeModule(WEATHER_SERVICE_MODULE_ID);
 
 $APPLICATION->SetAdditionalCSS("/react/public/css/style.css");
 $APPLICATION->SetAdditionalCSS("/react/public/css/rc-slider/style.css");
+$APPLICATION->SetAdditionalCSS("/react/public/css/react-toggle/style.css");
 $APPLICATION->AddHeadScript('/react/public/script/microevent.js');
 $APPLICATION->AddHeadScript('/react/public/script/jquery.js');
 $APPLICATION->AddHeadScript('/react/public/script/deepcopy.min.js');
